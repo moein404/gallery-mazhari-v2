@@ -8,10 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/*
- * اطلاعاتی که هنگام فراخوانی کارت دریافت می‌شوند.
- * اگر اطلاعاتی ارسال نشود، مقادیر آزمایشی زیر نمایش داده می‌شوند.
- */
 $args = isset( $args ) && is_array( $args ) ? $args : array();
 
 $product = wp_parse_args(
@@ -30,7 +26,7 @@ $product = wp_parse_args(
 <article class="mds-product-card">
 
     <a
-        class="mds-product-media"
+        class="mds-product-card__media"
         href="<?php echo esc_url( $product['url'] ); ?>"
         aria-label="<?php echo esc_attr( $product['title'] ); ?>"
     >
@@ -39,23 +35,27 @@ $product = wp_parse_args(
             alt="<?php echo esc_attr( $product['image_alt'] ); ?>"
             loading="lazy"
         >
-    </a>
-
-    <div class="mds-product-content">
 
         <?php if ( ! empty( $product['badge'] ) ) : ?>
 
-            <div class="mds-product-badges">
+            <span class="mds-product-card__badge">
+                <?php echo esc_html( $product['badge'] ); ?>
+            </span>
 
-                <span class="mds-badge">
-                    <?php echo esc_html( $product['badge'] ); ?>
-                </span>
+        <?php endif; ?>
+    </a>
 
+    <div class="mds-product-card__content">
+
+        <?php if ( ! empty( $product['meta'] ) ) : ?>
+
+            <div class="mds-product-card__category">
+                <?php echo esc_html( $product['meta'] ); ?>
             </div>
 
         <?php endif; ?>
 
-        <h3 class="mds-product-title">
+        <h3 class="mds-product-card__title">
 
             <a href="<?php echo esc_url( $product['url'] ); ?>">
                 <?php echo esc_html( $product['title'] ); ?>
@@ -63,17 +63,9 @@ $product = wp_parse_args(
 
         </h3>
 
-        <?php if ( ! empty( $product['meta'] ) ) : ?>
-
-            <div class="mds-product-meta">
-                <?php echo esc_html( $product['meta'] ); ?>
-            </div>
-
-        <?php endif; ?>
-
         <a
             href="<?php echo esc_url( $product['url'] ); ?>"
-            class="mds-button mds-button-text"
+            class="mds-btn mds-btn--text"
         >
             مشاهده محصول
             <span aria-hidden="true">←</span>
