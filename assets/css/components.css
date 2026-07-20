@@ -236,7 +236,7 @@
 
 .mds-site-header__brand {
   display: block;
-  width: clamp(9.5rem, 13vw, 11.5rem);
+  width: clamp(140px, 12vw, 160px);
   flex: 0 0 auto;
 }
 
@@ -261,7 +261,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 2.4vw, 2.25rem);
+  gap: clamp(16px, 2.4vw, 36px);
 }
 
 .mds-site-header__menu > li {
@@ -274,7 +274,7 @@
   align-items: center;
   min-height: 44px;
   color: var(--mds-color-heading);
-  font-size: var(--mds-font-size-sm);
+  font-size: 14px;
   font-weight: var(--mds-font-weight-medium);
   white-space: nowrap;
   transition: color var(--mds-transition-fast);
@@ -306,9 +306,9 @@
 .mds-site-header__menu .sub-menu {
   position: absolute;
   top: calc(100% - 2px);
-  right: -1rem;
-  min-width: 13rem;
-  padding: .75rem 1rem;
+  right: -16px;
+  min-width: 208px;
+  padding: 12px 16px;
   visibility: hidden;
   opacity: 0;
   transform: translateY(.5rem);
@@ -435,19 +435,20 @@
 
 .mds-site-header__search-form {
   display: flex;
-  gap: var(--mds-space-3);
+  gap: 12px;
 }
 
 .mds-site-header__search-form input {
   width: 100%;
   min-width: 0;
   height: 48px;
-  padding-inline: 1rem;
+  padding-inline: 16px;
   color: var(--mds-color-heading);
   background: var(--mds-color-background);
   border: 1px solid var(--mds-color-border);
   border-radius: var(--mds-radius-round);
-  font: inherit;
+  font-family: var(--mds-font-primary);
+  font-size: 14px;
 }
 
 .mds-site-header__search-form input:focus {
@@ -456,13 +457,14 @@
 }
 
 .mds-site-header__search-submit {
-  min-width: 7rem;
-  padding-inline: 1.5rem;
+  min-width: 112px;
+  padding-inline: 24px;
   color: var(--mds-color-text-light);
   background: var(--mds-color-primary);
   border: 0;
   border-radius: var(--mds-radius-round);
-  font: inherit;
+  font-family: var(--mds-font-primary);
+  font-size: 14px;
   font-weight: var(--mds-font-weight-medium);
   cursor: pointer;
 }
@@ -474,7 +476,7 @@
   }
 
   .mds-site-header__brand {
-    width: 9rem;
+    width: 130px;
   }
 
   .mds-site-header__nav {
@@ -541,7 +543,7 @@
   }
 
   .mds-site-header__brand {
-    width: 7.75rem;
+    width: 112px;
   }
 
   .mds-site-header__actions {
