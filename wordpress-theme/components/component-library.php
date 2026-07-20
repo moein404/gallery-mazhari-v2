@@ -64,10 +64,32 @@
             <h2>Badges</h2>
 
             <div class="mds-row">
-                <span class="mds-badge">جدید</span>
-                <span class="mds-badge">پرفروش</span>
-                <span class="mds-badge">اختصاصی</span>
-                <span class="mds-badge">اروپایی</span>
+                <?php
+                $badge_examples = array(
+                    array(
+                        'label'   => 'اختصاصی',
+                        'variant' => 'default',
+                    ),
+                    array(
+                        'label'   => 'جدید',
+                        'variant' => 'new',
+                    ),
+                    array(
+                        'label'   => 'پرفروش',
+                        'variant' => 'bestseller',
+                    ),
+                    array(
+                        'label'   => 'تخفیف',
+                        'variant' => 'sale',
+                    ),
+                );
+
+                foreach ( $badge_examples as $badge_args ) {
+                    include __DIR__ . '/badge.php';
+                }
+
+                unset( $badge_args, $badge_examples );
+                ?>
             </div>
         </section>
 
@@ -80,12 +102,13 @@
 
         <?php
         $args = array(
-            'title'     => 'لباس عروس مدل آتنا',
-            'meta'      => 'کالکشن اروپایی',
-            'badge'     => 'جدید',
-            'image'     => 'https://placehold.co/600x750?text=Athena',
-            'image_alt' => 'لباس عروس مدل آتنا',
-            'url'       => '#',
+            'title'         => 'لباس عروس مدل آتنا',
+            'meta'          => 'کالکشن اروپایی',
+            'badge'         => 'جدید',
+            'badge_variant' => 'new',
+            'image'         => 'https://placehold.co/600x750?text=Athena',
+            'image_alt'     => 'لباس عروس مدل آتنا',
+            'url'           => '#',
         );
 
         include __DIR__ . '/product-card.php';
@@ -93,12 +116,13 @@
 
         <?php
         $args = array(
-            'title'     => 'لباس عروس مدل رویال',
-            'meta'      => 'کالکشن عربی',
-            'badge'     => 'پرفروش',
-            'image'     => 'https://placehold.co/600x750?text=Royal',
-            'image_alt' => 'لباس عروس مدل رویال',
-            'url'       => '#',
+            'title'         => 'لباس عروس مدل رویال',
+            'meta'          => 'کالکشن عربی',
+            'badge'         => 'پرفروش',
+            'badge_variant' => 'bestseller',
+            'image'         => 'https://placehold.co/600x750?text=Royal',
+            'image_alt'     => 'لباس عروس مدل رویال',
+            'url'           => '#',
         );
 
         include __DIR__ . '/product-card.php';

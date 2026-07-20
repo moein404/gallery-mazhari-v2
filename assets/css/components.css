@@ -53,10 +53,39 @@
   position: absolute;
   top: var(--mds-space-4);
   right: var(--mds-space-4);
+  z-index: 1;
+}
+
+.mds-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 12px;
-  background: rgba(255,255,255,.9);
   border-radius: var(--mds-radius-round);
   font-size: var(--mds-font-size-xs);
+  font-weight: var(--mds-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mds-badge--default {
+  color: var(--mds-color-heading);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.mds-badge--new {
+  color: var(--mds-color-heading);
+  background: var(--mds-color-primary-light);
+}
+
+.mds-badge--bestseller {
+  color: var(--mds-color-text-light);
+  background: var(--mds-color-primary);
+}
+
+.mds-badge--sale {
+  color: var(--mds-color-text-light);
+  background: var(--mds-color-secondary);
 }
 
 .mds-product-card__category {
