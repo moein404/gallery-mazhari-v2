@@ -22,6 +22,10 @@ $product = wp_parse_args(
         'url'           => '#',
     )
 );
+
+$product_image_url = is_scalar( $product['image'] )
+    ? esc_url( trim( (string) $product['image'] ) )
+    : '';
 ?>
 
 <article class="mds-product-card">
@@ -31,11 +35,21 @@ $product = wp_parse_args(
         href="<?php echo esc_url( $product['url'] ); ?>"
         aria-label="<?php echo esc_attr( $product['title'] ); ?>"
     >
-        <img
-            src="<?php echo esc_url( $product['image'] ); ?>"
-            alt="<?php echo esc_attr( $product['image_alt'] ); ?>"
-            loading="lazy"
-        >
+        <?php if ( '' !== $product_image_url ) : ?>
+
+            <img
+                src="<?php echo esc_url( $product_image_url ); ?>"
+                alt="<?php echo esc_attr( $product['image_alt'] ); ?>"
+                loading="lazy"
+            >
+
+        <?php else : ?>
+
+            <span class="mds-product-card__image-placeholder" aria-hidden="true">
+                تصویر محصول به‌زودی
+            </span>
+
+        <?php endif; ?>
 
         <?php if ( ! empty( $product['badge'] ) ) : ?>
 
