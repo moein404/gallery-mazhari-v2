@@ -1,0 +1,362 @@
+/*
+ * Gallery Mazhari Design System
+ * Components v1.0.0
+ */
+
+/* ========================================
+   BUTTON SYSTEM
+======================================== */
+
+.mds-btn {
+  min-height: 52px;
+  padding: 12px 28px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mds-space-2);
+
+  border: 1px solid transparent;
+  border-radius: var(--mds-radius-round);
+
+  font-family: var(--mds-font-primary);
+  font-size: var(--mds-font-size-base);
+  font-weight: var(--mds-font-weight-medium);
+  line-height: 1;
+
+  cursor: pointer;
+  transition:
+    color var(--mds-transition-base),
+    background-color var(--mds-transition-base),
+    border-color var(--mds-transition-base),
+    transform var(--mds-transition-fast),
+    box-shadow var(--mds-transition-base);
+}
+
+.mds-btn:hover {
+  transform: translateY(-2px);
+}
+
+.mds-btn:active {
+  transform: translateY(0);
+}
+
+.mds-btn:focus-visible {
+  outline: 2px solid var(--mds-color-primary);
+  outline-offset: 4px;
+}
+
+/* Primary */
+
+.mds-btn--primary {
+  color: var(--mds-color-text-light);
+  background-color: var(--mds-color-primary);
+  box-shadow: 0 8px 24px rgba(183, 149, 69, 0.2);
+}
+
+.mds-btn--primary:hover {
+  background-color: var(--mds-color-primary-hover);
+  box-shadow: 0 12px 30px rgba(183, 149, 69, 0.28);
+}
+
+/* Secondary */
+
+.mds-btn--secondary {
+  color: var(--mds-color-heading);
+  background-color: transparent;
+  border-color: var(--mds-color-heading);
+}
+
+.mds-btn--secondary:hover {
+  color: var(--mds-color-text-light);
+  background-color: var(--mds-color-heading);
+}
+
+/* Light */
+
+.mds-btn--light {
+  color: var(--mds-color-heading);
+  background-color: var(--mds-color-surface);
+}
+
+.mds-btn--light:hover {
+  background-color: var(--mds-color-surface-soft);
+}
+
+/* Text Button */
+
+.mds-btn--text {
+  min-height: auto;
+  padding: 6px 0;
+
+  color: var(--mds-color-heading);
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid currentColor;
+}
+
+.mds-btn--text:hover {
+  color: var(--mds-color-primary);
+  transform: none;
+}
+
+/* Sizes */
+
+.mds-btn--small {
+  min-height: 42px;
+  padding: 10px 20px;
+  font-size: var(--mds-font-size-sm);
+}
+
+.mds-btn--large {
+  min-height: 60px;
+  padding: 16px 36px;
+  font-size: var(--mds-font-size-md);
+}
+
+/* Full Width */
+
+.mds-btn--full {
+  width: 100%;
+}
+
+/* Disabled */
+
+.mds-btn:disabled,
+.mds-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+
+/* ========================================
+   PRODUCT CARD
+======================================== */
+
+.mds-product-card {
+  position: relative;
+  overflow: hidden;
+
+  background-color: var(--mds-color-surface);
+  border-radius: var(--mds-radius-lg);
+}
+
+.mds-product-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+
+  background-color: var(--mds-color-surface-soft);
+}
+
+.mds-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform var(--mds-transition-slow);
+}
+
+.mds-product-card:hover .mds-product-card__image {
+  transform: scale(1.035);
+}
+
+.mds-product-card__badge {
+  position: absolute;
+  top: var(--mds-space-4);
+  right: var(--mds-space-4);
+
+  padding: 6px 12px;
+
+  color: var(--mds-color-heading);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: var(--mds-radius-round);
+
+  font-size: var(--mds-font-size-xs);
+  font-weight: var(--mds-font-weight-medium);
+  backdrop-filter: blur(8px);
+}
+
+.mds-product-card__content {
+  padding: var(--mds-space-5) var(--mds-space-2);
+}
+
+.mds-product-card__category {
+  margin-bottom: var(--mds-space-2);
+
+  color: var(--mds-color-primary);
+  font-size: var(--mds-font-size-xs);
+  font-weight: var(--mds-font-weight-semibold);
+}
+
+.mds-product-card__title {
+  margin-bottom: var(--mds-space-2);
+
+  color: var(--mds-color-heading);
+  font-size: var(--mds-font-size-md);
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-product-card__meta {
+  color: var(--mds-color-text-muted);
+  font-size: var(--mds-font-size-sm);
+}
+
+
+/* ========================================
+   COLLECTION CARD
+======================================== */
+
+.mds-collection-card {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 520px;
+  border-radius: var(--mds-radius-xl);
+  background-color: var(--mds-color-secondary);
+}
+
+.mds-collection-card__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 700ms ease;
+}
+
+.mds-collection-card:hover .mds-collection-card__image {
+  transform: scale(1.04);
+}
+
+.mds-collection-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.68),
+      rgba(0, 0, 0, 0.05) 60%
+    );
+}
+
+.mds-collection-card__content {
+  position: absolute;
+  z-index: 2;
+  right: var(--mds-space-6);
+  bottom: var(--mds-space-6);
+  left: var(--mds-space-6);
+
+  color: var(--mds-color-text-light);
+}
+
+.mds-collection-card__eyebrow {
+  margin-bottom: var(--mds-space-2);
+
+  color: #e5cf99;
+  font-size: var(--mds-font-size-sm);
+}
+
+.mds-collection-card__title {
+  color: var(--mds-color-text-light);
+  font-size: var(--mds-font-size-2xl);
+}
+
+
+/* ========================================
+   FORM SYSTEM
+======================================== */
+
+.mds-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mds-space-2);
+}
+
+.mds-label {
+  color: var(--mds-color-heading);
+  font-size: var(--mds-font-size-sm);
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-input,
+.mds-select,
+.mds-textarea {
+  width: 100%;
+
+  color: var(--mds-color-heading);
+  background-color: var(--mds-color-surface);
+  border: 1px solid var(--mds-color-border);
+  border-radius: var(--mds-radius-sm);
+
+  outline: none;
+
+  transition:
+    border-color var(--mds-transition-fast),
+    box-shadow var(--mds-transition-fast);
+}
+
+.mds-input,
+.mds-select {
+  min-height: 54px;
+  padding: 12px 16px;
+}
+
+.mds-textarea {
+  min-height: 140px;
+  padding: 16px;
+  resize: vertical;
+}
+
+.mds-input:focus,
+.mds-select:focus,
+.mds-textarea:focus {
+  border-color: var(--mds-color-primary);
+  box-shadow: 0 0 0 3px rgba(183, 149, 69, 0.14);
+}
+
+.mds-input::placeholder,
+.mds-textarea::placeholder {
+  color: var(--mds-color-text-muted);
+}
+
+.mds-form-help {
+  color: var(--mds-color-text-muted);
+  font-size: var(--mds-font-size-xs);
+}
+
+.mds-form-error {
+  color: var(--mds-color-error);
+  font-size: var(--mds-font-size-xs);
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 48rem) {
+  .mds-btn {
+    min-height: 48px;
+    padding-inline: 22px;
+  }
+
+  .mds-collection-card {
+    min-height: 420px;
+  }
+
+  .mds-collection-card__content {
+    right: var(--mds-space-5);
+    bottom: var(--mds-space-5);
+    left: var(--mds-space-5);
+  }
+
+  .mds-collection-card__title {
+    font-size: var(--mds-font-size-xl);
+  }
+}
