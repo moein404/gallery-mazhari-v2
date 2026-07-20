@@ -74,14 +74,55 @@
         <hr>
 
         <section class="mds-stack">
-            <h2>Product Card</h2>
+    <h2>Product Cards</h2>
 
-            <div style="max-width: 360px;">
-                <?php
-                include __DIR__ . '/product-card.php';
-                ?>
-            </div>
-        </section>
+    <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+    ">
+
+        <?php
+        $args = array(
+            'title'     => 'لباس عروس مدل آتنا',
+            'meta'      => 'کالکشن اروپایی',
+            'badge'     => 'جدید',
+            'image'     => 'https://placehold.co/600x750?text=Athena',
+            'image_alt' => 'لباس عروس مدل آتنا',
+            'url'       => '#',
+        );
+
+        include __DIR__ . '/product-card.php';
+        ?>
+
+        <?php
+        $args = array(
+            'title'     => 'لباس عروس مدل رویال',
+            'meta'      => 'کالکشن عربی',
+            'badge'     => 'پرفروش',
+            'image'     => 'https://placehold.co/600x750?text=Royal',
+            'image_alt' => 'لباس عروس مدل رویال',
+            'url'       => '#',
+        );
+
+        include __DIR__ . '/product-card.php';
+        ?>
+
+        <?php
+        $args = array(
+            'title'     => 'لباس عروس مدل سلین',
+            'meta'      => 'کالکشن ماهی',
+            'badge'     => '',
+            'image'     => 'https://placehold.co/600x750?text=Celine',
+            'image_alt' => 'لباس عروس مدل سلین',
+            'url'       => '#',
+        );
+
+        include __DIR__ . '/product-card.php';
+        ?>
+
+    </div>
+</section>
 
         <hr>
 
