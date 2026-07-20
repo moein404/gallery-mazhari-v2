@@ -69,6 +69,26 @@ function mazhari_header_shortcode() {
 add_shortcode( 'mazhari_header', 'mazhari_header_shortcode' );
 
 /**
+ * Homepage hero shortcode for use inside the Bricks Home page.
+ */
+function mazhari_home_hero_shortcode() {
+    $component_file = get_stylesheet_directory()
+        . '/components/home-hero.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode( 'mazhari_home_hero', 'mazhari_home_hero_shortcode' );
+
+/**
  * Component Library Shortcode
  */
 function mazhari_component_library_shortcode() {
