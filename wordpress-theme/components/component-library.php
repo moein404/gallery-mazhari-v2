@@ -76,11 +76,7 @@
         <section class="mds-stack">
     <h2>Product Cards</h2>
 
-    <div style="
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 24px;
-    ">
+   <div class="mds-product-grid">
 
         <?php
         $args = array(
