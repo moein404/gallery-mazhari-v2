@@ -35,3 +35,26 @@ function mazhari_enqueue_assets() {
     );
 }
 add_action( 'wp_enqueue_scripts', 'mazhari_enqueue_assets', 20 );
+/**
+ * Component Library Shortcode
+ */
+function mazhari_component_library_shortcode() {
+
+    $component_file = get_stylesheet_directory()
+        . '/components/component-library.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode(
+    'mazhari_component_library',
+    'mazhari_component_library_shortcode'
+);
