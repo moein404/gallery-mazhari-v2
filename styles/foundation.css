@@ -1,0 +1,477 @@
+/*
+ * Gallery Mazhari Design System
+ * Foundation v1.0.0
+ *
+ * این فایل شامل متغیرهای پایه طراحی سایت است:
+ * Colors, Typography, Spacing, Radius, Shadows, Layout
+ */
+
+/* ========================================
+   1. DESIGN TOKENS
+======================================== */
+
+:root {
+  /* Brand Colors */
+  --mds-color-primary: #b79545;
+  --mds-color-primary-hover: #9f7e38;
+  --mds-color-primary-light: #eee5d1;
+
+  --mds-color-secondary: #1c1c1c;
+  --mds-color-secondary-light: #353535;
+
+  /* Backgrounds */
+  --mds-color-background: #f8f6f2;
+  --mds-color-surface: #ffffff;
+  --mds-color-surface-soft: #f2efe9;
+
+  /* Text */
+  --mds-color-heading: #171717;
+  --mds-color-text: #535353;
+  --mds-color-text-muted: #7a7a7a;
+  --mds-color-text-light: #ffffff;
+
+  /* Borders */
+  --mds-color-border: #e4dfd6;
+  --mds-color-border-dark: #cbc3b7;
+
+  /* Feedback */
+  --mds-color-success: #2e7d32;
+  --mds-color-warning: #b7791f;
+  --mds-color-error: #c62828;
+  --mds-color-info: #1565c0;
+
+  /* Typography */
+  --mds-font-primary: "Vazirmatn", "Tahoma", sans-serif;
+  --mds-font-english: "Inter", "Arial", sans-serif;
+
+  --mds-font-size-xs: 0.75rem;
+  --mds-font-size-sm: 0.875rem;
+  --mds-font-size-base: 1rem;
+  --mds-font-size-md: 1.125rem;
+  --mds-font-size-lg: 1.375rem;
+  --mds-font-size-xl: 1.75rem;
+  --mds-font-size-2xl: 2.25rem;
+  --mds-font-size-3xl: 3rem;
+  --mds-font-size-hero: clamp(2.5rem, 6vw, 5rem);
+
+  --mds-font-weight-regular: 400;
+  --mds-font-weight-medium: 500;
+  --mds-font-weight-semibold: 600;
+  --mds-font-weight-bold: 700;
+
+  --mds-line-height-tight: 1.25;
+  --mds-line-height-heading: 1.4;
+  --mds-line-height-body: 1.8;
+
+  /* Spacing */
+  --mds-space-1: 0.25rem;
+  --mds-space-2: 0.5rem;
+  --mds-space-3: 0.75rem;
+  --mds-space-4: 1rem;
+  --mds-space-5: 1.5rem;
+  --mds-space-6: 2rem;
+  --mds-space-7: 3rem;
+  --mds-space-8: 4rem;
+  --mds-space-9: 6rem;
+  --mds-space-10: 8rem;
+
+  /* Border Radius */
+  --mds-radius-sm: 0.5rem;
+  --mds-radius-md: 1rem;
+  --mds-radius-lg: 1.5rem;
+  --mds-radius-xl: 2rem;
+  --mds-radius-round: 999px;
+
+  /* Shadows */
+  --mds-shadow-soft:
+    0 4px 20px rgba(17, 17, 17, 0.06);
+
+  --mds-shadow-medium:
+    0 12px 35px rgba(17, 17, 17, 0.1);
+
+  --mds-shadow-luxury:
+    0 24px 60px rgba(17, 17, 17, 0.14);
+
+  /* Layout */
+  --mds-container-width: 82.5rem;
+  --mds-container-padding: 1.5rem;
+
+  /* Transitions */
+  --mds-transition-fast: 150ms ease;
+  --mds-transition-base: 250ms ease;
+  --mds-transition-slow: 400ms ease;
+
+  /* Layers */
+  --mds-z-base: 1;
+  --mds-z-header: 100;
+  --mds-z-overlay: 500;
+  --mds-z-modal: 1000;
+}
+
+
+/* ========================================
+   2. BASE RESET
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--mds-font-primary);
+  font-size: var(--mds-font-size-base);
+  font-weight: var(--mds-font-weight-regular);
+  line-height: var(--mds-line-height-body);
+  color: var(--mds-color-text);
+  background-color: var(--mds-color-background);
+  direction: rtl;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ========================================
+   3. TYPOGRAPHY
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--mds-color-heading);
+  font-weight: var(--mds-font-weight-semibold);
+  line-height: var(--mds-line-height-heading);
+}
+
+h1 {
+  font-size: var(--mds-font-size-3xl);
+}
+
+h2 {
+  font-size: var(--mds-font-size-2xl);
+}
+
+h3 {
+  font-size: var(--mds-font-size-xl);
+}
+
+h4 {
+  font-size: var(--mds-font-size-lg);
+}
+
+p {
+  margin: 0;
+}
+
+.mds-hero-title {
+  font-size: var(--mds-font-size-hero);
+  line-height: var(--mds-line-height-tight);
+}
+
+.mds-eyebrow {
+  color: var(--mds-color-primary);
+  font-size: var(--mds-font-size-sm);
+  font-weight: var(--mds-font-weight-semibold);
+  letter-spacing: 0.08em;
+}
+
+.mds-text-muted {
+  color: var(--mds-color-text-muted);
+}
+
+
+/* ========================================
+   4. LAYOUT
+======================================== */
+
+.mds-container {
+  width: min(
+    calc(100% - (var(--mds-container-padding) * 2)),
+    var(--mds-container-width)
+  );
+  margin-inline: auto;
+}
+
+.mds-section {
+  padding-block: var(--mds-space-9);
+}
+
+.mds-section-sm {
+  padding-block: var(--mds-space-7);
+}
+
+.mds-section-lg {
+  padding-block: var(--mds-space-10);
+}
+
+.mds-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mds-space-5);
+}
+
+.mds-row {
+  display: flex;
+  align-items: center;
+  gap: var(--mds-space-4);
+}
+
+.mds-grid {
+  display: grid;
+  gap: var(--mds-space-6);
+}
+
+.mds-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mds-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mds-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+
+/* ========================================
+   5. BUTTONS
+======================================== */
+
+.mds-button {
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mds-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--mds-radius-round);
+  font-weight: var(--mds-font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--mds-transition-base),
+    color var(--mds-transition-base),
+    border-color var(--mds-transition-base),
+    transform var(--mds-transition-fast);
+}
+
+.mds-button:hover {
+  transform: translateY(-2px);
+}
+
+.mds-button:active {
+  transform: translateY(0);
+}
+
+.mds-button-primary {
+  color: var(--mds-color-text-light);
+  background-color: var(--mds-color-primary);
+}
+
+.mds-button-primary:hover {
+  background-color: var(--mds-color-primary-hover);
+}
+
+.mds-button-secondary {
+  color: var(--mds-color-secondary);
+  background-color: transparent;
+  border-color: var(--mds-color-secondary);
+}
+
+.mds-button-secondary:hover {
+  color: var(--mds-color-text-light);
+  background-color: var(--mds-color-secondary);
+}
+
+.mds-button-ghost {
+  color: var(--mds-color-heading);
+  background-color: transparent;
+}
+
+
+/* ========================================
+   6. CARDS
+======================================== */
+
+.mds-card {
+  overflow: hidden;
+  background-color: var(--mds-color-surface);
+  border: 1px solid var(--mds-color-border);
+  border-radius: var(--mds-radius-lg);
+  transition:
+    transform var(--mds-transition-base),
+    box-shadow var(--mds-transition-base);
+}
+
+.mds-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--mds-shadow-medium);
+}
+
+.mds-card-content {
+  padding: var(--mds-space-5);
+}
+
+
+/* ========================================
+   7. FORMS
+======================================== */
+
+.mds-field {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  color: var(--mds-color-heading);
+  background-color: var(--mds-color-surface);
+  border: 1px solid var(--mds-color-border);
+  border-radius: var(--mds-radius-sm);
+  outline: none;
+  transition:
+    border-color var(--mds-transition-fast),
+    box-shadow var(--mds-transition-fast);
+}
+
+.mds-field:focus {
+  border-color: var(--mds-color-primary);
+  box-shadow: 0 0 0 3px var(--mds-color-primary-light);
+}
+
+.mds-field::placeholder {
+  color: var(--mds-color-text-muted);
+}
+
+
+/* ========================================
+   8. ACCESSIBILITY
+======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--mds-color-primary);
+  outline-offset: 3px;
+}
+
+.mds-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+
+/* ========================================
+   9. RESPONSIVE
+======================================== */
+
+@media (max-width: 75rem) {
+  :root {
+    --mds-container-width: 71.25rem;
+  }
+}
+
+@media (max-width: 62rem) {
+  .mds-grid-3,
+  .mds-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mds-section {
+    padding-block: var(--mds-space-8);
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --mds-container-padding: 1rem;
+  }
+
+  h1 {
+    font-size: var(--mds-font-size-2xl);
+  }
+
+  h2 {
+    font-size: var(--mds-font-size-xl);
+  }
+
+  .mds-grid-2,
+  .mds-grid-3,
+  .mds-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .mds-section {
+    padding-block: var(--mds-space-7);
+  }
+
+  .mds-section-lg {
+    padding-block: var(--mds-space-8);
+  }
+}
+
+
+/* ========================================
+   10. REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
