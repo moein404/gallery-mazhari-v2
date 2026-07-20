@@ -13,12 +13,13 @@ $args = isset( $args ) && is_array( $args ) ? $args : array();
 $product = wp_parse_args(
     $args,
     array(
-        'title'     => 'لباس عروس Signature',
-        'meta'      => 'کالکشن اروپایی',
-        'badge'     => 'جدید',
-        'image'     => 'https://placehold.co/600x750',
-        'image_alt' => 'لباس عروس Signature',
-        'url'       => '#',
+        'title'         => 'لباس عروس Signature',
+        'meta'          => 'کالکشن اروپایی',
+        'badge'         => 'جدید',
+        'badge_variant' => 'new',
+        'image'         => 'https://placehold.co/600x750',
+        'image_alt'     => 'لباس عروس Signature',
+        'url'           => '#',
     )
 );
 ?>
@@ -39,7 +40,16 @@ $product = wp_parse_args(
         <?php if ( ! empty( $product['badge'] ) ) : ?>
 
             <span class="mds-product-card__badge">
-                <?php echo esc_html( $product['badge'] ); ?>
+                <?php
+                $badge_args = array(
+                    'label'   => $product['badge'],
+                    'variant' => $product['badge_variant'],
+                );
+
+                include __DIR__ . '/badge.php';
+
+                unset( $badge_args );
+                ?>
             </span>
 
         <?php endif; ?>
