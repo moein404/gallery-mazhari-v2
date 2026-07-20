@@ -35,6 +35,39 @@ function mazhari_enqueue_assets() {
     );
 }
 add_action( 'wp_enqueue_scripts', 'mazhari_enqueue_assets', 20 );
+
+/**
+ * Theme navigation locations.
+ */
+function mazhari_register_navigation() {
+    register_nav_menus(
+        array(
+            'primary' => __( 'Primary Menu', 'mazhari' ),
+        )
+    );
+}
+add_action( 'after_setup_theme', 'mazhari_register_navigation' );
+
+/**
+ * Main site header shortcode for use inside a Bricks Header template.
+ */
+function mazhari_header_shortcode() {
+    $component_file = get_stylesheet_directory()
+        . '/components/site-header.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode( 'mazhari_header', 'mazhari_header_shortcode' );
+
 /**
  * Component Library Shortcode
  */
