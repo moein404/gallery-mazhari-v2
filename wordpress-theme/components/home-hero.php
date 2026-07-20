@@ -19,32 +19,32 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
         <div class="mds-home-hero__content">
             <p class="mds-home-hero__eyebrow">
                 <span aria-hidden="true"></span>
-                گالری تخصصی لباس عروس
+                مرجع کامل محصولات عروس
             </p>
 
             <h1 class="mds-home-hero__title" id="<?php echo esc_attr( $hero_title_id ); ?>">
-                لباسی برای
-                <span>زیباترین روایت شما</span>
+                انتخابی برای یک روز؛
+                <span>خاطره‌ای برای تمام عمر</span>
             </h1>
 
             <p class="mds-home-hero__description">
-                مجموعه‌ای منتخب از لباس‌های عروس با طراحی ماندگار؛ برای انتخابی شخصی، آرام و درخور لحظه‌ای که همیشه به یاد می‌ماند.
+                از پوشاک و تور سر تا کفش، کیف، اکسسوری مو، زیورآلات و ملزومات عقد؛ مجموعه‌ای کامل برای ساختن هماهنگ‌ترین انتخاب عروس.
             </p>
 
             <div class="mds-home-hero__actions">
                 <a class="mds-btn mds-btn--primary" href="<?php echo esc_url( $home_url . '#collections' ); ?>">
-                    مشاهده کالکشن‌ها
+                    مشاهده دسته‌بندی‌ها
                     <span aria-hidden="true">←</span>
                 </a>
                 <a class="mds-btn mds-btn--secondary" href="<?php echo esc_url( $home_url . '#appointment' ); ?>">
-                    رزرو مشاوره
+                    دریافت مشاوره
                 </a>
             </div>
 
             <ul class="mds-home-hero__features" aria-label="مزایای گالری مظهری">
-                <li>مشاوره تخصصی</li>
-                <li>انتخاب شخصی‌سازی‌شده</li>
-                <li>پرو با آرامش</li>
+                <li>پوشاک و تور عروس</li>
+                <li>کفش، کیف و اکسسوری</li>
+                <li>ملزومات عقد و بله‌برون</li>
             </ul>
         </div>
 
@@ -52,7 +52,7 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
             <div class="mds-home-hero__image-frame">
                 <img
                     src="<?php echo esc_url( $hero_image ); ?>"
-                    alt="عروس با لباس بلند و ظریف در فضای روشن"
+                    alt="عروس با استایل کامل و ظریف در فضای روشن"
                     width="1003"
                     height="1568"
                     fetchpriority="high"
@@ -61,8 +61,8 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
             </div>
 
             <p class="mds-home-hero__image-note">
-                <span>کالکشن منتخب</span>
-                ۱۴۰۵
+                <span>همه‌چیز برای عروس</span>
+                در یک مجموعه
             </p>
         </div>
     </div>
