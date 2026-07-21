@@ -168,6 +168,180 @@ function mazhari_home_why_shortcode() {
 add_shortcode( 'mazhari_home_why', 'mazhari_home_why_shortcode' );
 
 /**
+ * Consultation form option labels.
+ */
+function mazhari_get_consultation_category_options() {
+    return array(
+        'complete'    => 'انتخاب کامل محصولات عروس',
+        'clothing'    => 'پوشاک عروس',
+        'veil'        => 'تور سر و حجاب مو',
+        'shoes-bags'  => 'کفش، کتونی و کیف',
+        'hair'        => 'اکسسوری مو',
+        'jewelry'     => 'زیورآلات',
+        'bouquet'     => 'دسته‌گل و اکسسوری خاص',
+        'ceremony'    => 'ملزومات عقد و بله‌برون',
+    );
+}
+
+function mazhari_get_consultation_time_options() {
+    return array(
+        'morning'   => 'صبح، ۹ تا ۱۲',
+        'afternoon' => 'ظهر، ۱۲ تا ۱۶',
+        'evening'   => 'عصر، ۱۶ تا ۲۰',
+        'anytime'   => 'هر زمان مناسب بود',
+    );
+}
+
+/**
+ * Homepage consultation form shortcode.
+ */
+function mazhari_home_appointment_shortcode() {
+    $component_file = get_stylesheet_directory()
+        . '/components/home-appointment.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode( 'mazhari_home_appointment', 'mazhari_home_appointment_shortcode' );
+
+/**
+ * Redirect consultation form submissions back to the homepage section.
+ */
+function mazhari_consultation_redirect( $status ) {
+    $redirect_url = wp_get_referer();
+
+    if ( ! $redirect_url ) {
+        $redirect_url = home_url( '/' );
+    }
+
+    $redirect_url = remove_query_arg( 'consultation', $redirect_url );
+    $redirect_url = add_query_arg( 'consultation', sanitize_key( $status ), $redirect_url );
+
+    wp_safe_redirect( $redirect_url . '#appointment' );
+    exit;
+}
+
+/**
+ * Validate and email a consultation request to the WordPress administrator.
+ */
+function mazhari_handle_consultation_form() {
+    $nonce = isset( $_POST['mazhari_consultation_nonce'] )
+        ? sanitize_text_field( wp_unslash( $_POST['mazhari_consultation_nonce'] ) )
+        : '';
+
+    if ( ! wp_verify_nonce( $nonce, 'mazhari_consultation_submit' ) ) {
+        mazhari_consultation_redirect( 'invalid' );
+    }
+
+    $honeypot = isset( $_POST['website'] )
+        ? sanitize_text_field( wp_unslash( $_POST['website'] ) )
+        : '';
+
+    if ( '' !== $honeypot ) {
+        mazhari_consultation_redirect( 'success' );
+    }
+
+    $full_name = isset( $_POST['full_name'] )
+        ? sanitize_text_field( wp_unslash( $_POST['full_name'] ) )
+        : '';
+    $phone = isset( $_POST['phone'] )
+        ? sanitize_text_field( wp_unslash( $_POST['phone'] ) )
+        : '';
+    $category = isset( $_POST['category'] )
+        ? sanitize_key( wp_unslash( $_POST['category'] ) )
+        : '';
+    $contact_time = isset( $_POST['contact_time'] )
+        ? sanitize_key( wp_unslash( $_POST['contact_time'] ) )
+        : '';
+    $message = isset( $_POST['message'] )
+        ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) )
+        : '';
+    $consent = isset( $_POST['consent'] )
+        ? sanitize_text_field( wp_unslash( $_POST['consent'] ) )
+        : '';
+
+    $category_options = mazhari_get_consultation_category_options();
+    $time_options     = mazhari_get_consultation_time_options();
+
+    if (
+        '' === $full_name
+        || '' === $phone
+        || '1' !== $consent
+        || ! isset( $category_options[ $category ] )
+        || ! isset( $time_options[ $contact_time ] )
+    ) {
+        mazhari_consultation_redirect( 'required' );
+    }
+
+    if ( ! preg_match( '/^[0-9۰-۹+\-\s]{8,20}$/u', $phone ) ) {
+        mazhari_consultation_redirect( 'invalid' );
+    }
+
+    $name_length = function_exists( 'mb_strlen' )
+        ? mb_strlen( $full_name )
+        : strlen( $full_name );
+    $message_length = function_exists( 'mb_strlen' )
+        ? mb_strlen( $message )
+        : strlen( $message );
+
+    if ( $name_length < 2 || $name_length > 80 || $message_length > 800 ) {
+        mazhari_consultation_redirect( 'invalid' );
+    }
+
+    $remote_address = isset( $_SERVER['REMOTE_ADDR'] )
+        ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
+        : '';
+    $rate_limit_key = '' !== $remote_address
+        ? 'mazhari_consultation_' . md5( $remote_address )
+        : '';
+
+    if ( '' !== $rate_limit_key && get_transient( $rate_limit_key ) ) {
+        mazhari_consultation_redirect( 'rate-limited' );
+    }
+
+    if ( '' !== $rate_limit_key ) {
+        set_transient( $rate_limit_key, 1, MINUTE_IN_SECONDS );
+    }
+
+    $email_subject = sprintf(
+        'درخواست مشاوره جدید از طرف %s',
+        $full_name
+    );
+    $email_body = implode(
+        PHP_EOL,
+        array(
+            'درخواست مشاوره جدید از وب‌سایت گالری مظهری',
+            '',
+            'نام: ' . $full_name,
+            'شماره تماس: ' . $phone,
+            'موضوع مشاوره: ' . $category_options[ $category ],
+            'زمان مناسب تماس: ' . $time_options[ $contact_time ],
+            'توضیحات: ' . ( '' !== $message ? $message : '—' ),
+        )
+    );
+    $email_headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+    $sent          = wp_mail(
+        get_option( 'admin_email' ),
+        $email_subject,
+        $email_body,
+        $email_headers
+    );
+
+    mazhari_consultation_redirect( $sent ? 'success' : 'send-error' );
+}
+
+add_action( 'admin_post_mazhari_consultation', 'mazhari_handle_consultation_form' );
+add_action( 'admin_post_nopriv_mazhari_consultation', 'mazhari_handle_consultation_form' );
+
+/**
  * Component Library Shortcode
  */
 function mazhari_component_library_shortcode() {

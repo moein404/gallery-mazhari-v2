@@ -1599,3 +1599,388 @@
     transition-duration: .01ms !important;
   }
 }
+
+/* ========================================
+   HOMEPAGE CONSULTATION
+======================================== */
+
+.mds-home-appointment {
+  position: relative;
+  padding-block: clamp(82px, 9vw, 132px);
+  overflow: hidden;
+  scroll-margin-top: 110px;
+  color: var(--mds-color-heading);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(183, 149, 69, .1), transparent 24%),
+    #f3eee5;
+}
+
+.mds-home-appointment::before,
+.mds-home-appointment::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(183, 149, 69, .14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mds-home-appointment::before {
+  width: 360px;
+  height: 360px;
+  top: -220px;
+  left: -140px;
+}
+
+.mds-home-appointment::after {
+  width: 180px;
+  height: 180px;
+  top: -105px;
+  left: -48px;
+}
+
+.mds-home-appointment__inner {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 48px), 1240px);
+  display: grid;
+  grid-template-columns: minmax(340px, .72fr) minmax(0, 1.08fr);
+  gap: clamp(42px, 7vw, 96px);
+}
+
+.mds-home-appointment__intro {
+  padding: clamp(34px, 4.2vw, 60px);
+  color: var(--mds-color-text-light);
+  background:
+    radial-gradient(circle at 10% 90%, rgba(201, 164, 84, .22), transparent 30%),
+    linear-gradient(145deg, #2a2722, #171614);
+  border: 1px solid rgba(183, 149, 69, .38);
+  border-radius: 4px 4px 58px 4px;
+  box-shadow: 0 28px 65px rgba(23, 23, 23, .14);
+}
+
+.mds-home-appointment__eyebrow {
+  margin: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #d3b164;
+  font-size: 13px;
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-home-appointment__eyebrow span {
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+}
+
+.mds-home-appointment__title {
+  margin: 0;
+  color: inherit;
+  font-family: var(--mds-font-display);
+  font-size: clamp(36px, 4vw, 57px);
+  font-weight: var(--mds-font-weight-bold);
+  line-height: 1.35;
+  letter-spacing: -.02em;
+}
+
+.mds-home-appointment__title span {
+  display: block;
+  color: #d3b164;
+}
+
+.mds-home-appointment__description {
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, .66);
+  font-size: 14px;
+  line-height: 2;
+}
+
+.mds-home-appointment__steps {
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mds-home-appointment__steps li {
+  padding-block: 17px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 13px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+.mds-home-appointment__steps li > span {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #d3b164;
+  border: 1px solid rgba(211, 177, 100, .38);
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.mds-home-appointment__steps p {
+  margin: 0;
+  color: rgba(255, 255, 255, .52);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.mds-home-appointment__steps strong {
+  display: block;
+  margin-bottom: 3px;
+  color: rgba(255, 255, 255, .9);
+  font-family: var(--mds-font-display);
+  font-size: 17px;
+  font-weight: var(--mds-font-weight-semibold);
+}
+
+.mds-home-appointment__note {
+  margin: 24px 0 0;
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255, 255, 255, .48);
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.mds-home-appointment__note span {
+  color: #d3b164;
+}
+
+.mds-home-appointment__form-card {
+  padding: clamp(30px, 4vw, 54px);
+  background: rgba(255, 253, 249, .92);
+  border: 1px solid rgba(183, 149, 69, .24);
+  border-radius: 4px 4px 44px 4px;
+  box-shadow: 0 22px 55px rgba(48, 37, 22, .07);
+}
+
+.mds-home-appointment__form-heading {
+  margin-bottom: 30px;
+  padding-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--mds-color-border);
+}
+
+.mds-home-appointment__form-heading span {
+  color: var(--mds-color-primary-hover);
+  font-size: 12px;
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-home-appointment__form-heading strong {
+  margin-top: 4px;
+  color: var(--mds-color-heading);
+  font-family: var(--mds-font-display);
+  font-size: clamp(26px, 2.5vw, 36px);
+  line-height: 1.5;
+}
+
+.mds-form-notice {
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  border: 1px solid;
+  border-radius: var(--mds-radius-sm);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.mds-form-notice--success {
+  color: #345c3e;
+  background: #edf7ef;
+  border-color: #b8d7bf;
+}
+
+.mds-form-notice--error {
+  color: #7a3434;
+  background: #fff1f1;
+  border-color: #e5bcbc;
+}
+
+.mds-consultation-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mds-consultation-form__honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.mds-consultation-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mds-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--mds-color-heading);
+  font-size: 13px;
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-form-field b {
+  color: var(--mds-color-primary-hover);
+  font-weight: inherit;
+}
+
+.mds-form-field small {
+  color: var(--mds-color-text-muted);
+  font-size: 11px;
+  font-weight: var(--mds-font-weight-regular);
+}
+
+.mds-form-field input,
+.mds-form-field select,
+.mds-form-field textarea {
+  width: 100%;
+  min-width: 0;
+  color: var(--mds-color-heading);
+  background: #faf8f3;
+  border: 1px solid var(--mds-color-border);
+  border-radius: 3px;
+  font-family: var(--mds-font-primary);
+  font-size: 13px;
+  line-height: 1.6;
+  transition:
+    background var(--mds-transition-fast),
+    border-color var(--mds-transition-fast),
+    box-shadow var(--mds-transition-fast);
+}
+
+.mds-form-field input,
+.mds-form-field select {
+  min-height: 52px;
+  padding: 10px 14px;
+}
+
+.mds-form-field textarea {
+  min-height: 112px;
+  padding: 13px 14px;
+  resize: vertical;
+}
+
+.mds-form-field input:focus,
+.mds-form-field select:focus,
+.mds-form-field textarea:focus {
+  background: var(--mds-color-surface);
+  border-color: var(--mds-color-primary);
+  box-shadow: 0 0 0 3px rgba(183, 149, 69, .12);
+  outline: none;
+}
+
+.mds-form-field input::placeholder,
+.mds-form-field textarea::placeholder {
+  color: #9b968c;
+  opacity: 1;
+}
+
+.mds-consultation-form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--mds-color-text-muted);
+  font-size: 12px;
+  line-height: 1.75;
+  cursor: pointer;
+}
+
+.mds-consultation-form__consent input {
+  width: 17px;
+  height: 17px;
+  margin: 3px 0 0;
+  flex: 0 0 auto;
+  accent-color: var(--mds-color-primary);
+}
+
+.mds-consultation-form > .mds-btn {
+  min-width: 210px;
+  align-self: flex-start;
+  border: 0;
+  font-size: 14px;
+}
+
+.mds-consultation-form > .mds-btn:hover,
+.mds-consultation-form > .mds-btn:focus-visible {
+  color: var(--mds-color-text-light);
+  background: var(--mds-color-primary-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 64rem) {
+  .mds-home-appointment__inner {
+    grid-template-columns: minmax(300px, .68fr) minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .mds-consultation-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 52rem) {
+  .mds-home-appointment__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .mds-home-appointment__intro {
+    max-width: none;
+  }
+
+  .mds-consultation-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .mds-home-appointment {
+    padding-block: 70px;
+    scroll-margin-top: 82px;
+  }
+
+  .mds-home-appointment__inner {
+    width: calc(100% - 32px);
+  }
+
+  .mds-home-appointment__intro,
+  .mds-home-appointment__form-card {
+    padding: 28px 22px;
+  }
+
+  .mds-home-appointment__title {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+
+  .mds-consultation-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .mds-consultation-form > .mds-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mds-form-field input,
+  .mds-form-field select,
+  .mds-form-field textarea,
+  .mds-consultation-form > .mds-btn {
+    transition-duration: .01ms !important;
+  }
+}
