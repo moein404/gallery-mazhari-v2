@@ -1944,6 +1944,220 @@
   }
 }
 
+/* Image-led value comparison */
+.mds-home-why__inner {
+  grid-template-columns: minmax(380px, .78fr) minmax(0, .92fr);
+  grid-template-areas: "visual content";
+  gap: clamp(52px, 8vw, 116px);
+}
+
+.mds-home-why__lead {
+  max-width: 540px;
+}
+
+.mds-home-why__comparison {
+  margin-top: 30px;
+  border-top: 1px solid var(--mds-color-border);
+  border-bottom: 1px solid var(--mds-color-border);
+}
+
+.mds-home-why__comparison p {
+  min-height: 64px;
+  margin: 0;
+  padding-block: 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--mds-color-border);
+}
+
+.mds-home-why__comparison p:last-child {
+  border-bottom: 0;
+}
+
+.mds-home-why__comparison > p > span:first-child {
+  color: var(--mds-color-text-muted);
+  font-size: 13px;
+}
+
+.mds-home-why__comparison strong {
+  color: var(--mds-color-heading);
+  font-family: var(--mds-font-display);
+  font-size: 18px;
+  font-weight: var(--mds-font-weight-semibold);
+}
+
+.mds-home-why__comparison-arrow {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mds-color-primary-hover);
+  background: rgba(183, 149, 69, .08);
+  border: 1px solid rgba(183, 149, 69, .3);
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.mds-home-why__image-frame {
+  border-radius: 28px 28px 160px 28px;
+}
+
+.mds-home-why__image-frame::after {
+  background: linear-gradient(180deg, transparent 55%, rgba(32, 25, 18, .42) 100%);
+}
+
+.mds-home-why__visual::before {
+  border-radius: 28px 28px 160px 28px;
+}
+
+.mds-home-why__image-caption {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  z-index: 2;
+  margin: 0;
+  padding: 17px 18px;
+  color: #fff;
+  background: rgba(28, 23, 18, .66);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 14px 14px 70px 14px;
+  backdrop-filter: blur(10px);
+}
+
+.mds-home-why__image-caption span {
+  display: block;
+  margin-bottom: 4px;
+  direction: ltr;
+  color: #e3c678;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 9px;
+  letter-spacing: .13em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.mds-home-why__image-caption strong {
+  display: block;
+  color: #fff;
+  font-family: var(--mds-font-display);
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+@media (max-width: 52rem) {
+  .mds-home-why__inner {
+    grid-template-areas:
+      "visual"
+      "content";
+    gap: 40px;
+  }
+
+  .mds-home-why__visual {
+    width: min(100%, 620px);
+    margin: 0;
+  }
+}
+
+@media (max-width: 40rem) {
+  .mds-home-why {
+    padding-top: 52px;
+  }
+
+  .mds-home-why__inner {
+    width: calc(100% - 48px);
+    padding-bottom: 68px;
+    gap: 28px;
+  }
+
+  .mds-home-why__visual {
+    width: 100%;
+  }
+
+  .mds-home-why__visual::before {
+    display: none;
+  }
+
+  .mds-home-why__image-frame {
+    aspect-ratio: 4 / 5;
+    border-radius: 22px;
+    box-shadow: 0 18px 46px rgba(48, 37, 22, .12);
+  }
+
+  .mds-home-why__image-frame img {
+    object-position: center 64%;
+  }
+
+  .mds-home-why__image-caption {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .mds-home-why__image-caption span {
+    font-size: 7px;
+  }
+
+  .mds-home-why__image-caption strong {
+    font-size: 15px;
+  }
+
+  .mds-home-why__eyebrow {
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .mds-home-why__eyebrow span {
+    width: 28px;
+  }
+
+  .mds-home-why__title {
+    font-size: clamp(29px, 8.5vw, 36px);
+    line-height: 1.35;
+  }
+
+  .mds-home-why__lead {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .mds-home-why__comparison {
+    margin-top: 22px;
+  }
+
+  .mds-home-why__comparison p {
+    min-height: 52px;
+    padding-block: 9px;
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .mds-home-why__comparison > p > span:first-child {
+    font-size: 10px;
+  }
+
+  .mds-home-why__comparison strong {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .mds-home-why__comparison-arrow {
+    width: 24px;
+    height: 24px;
+    font-size: 9px;
+  }
+
+  .mds-home-why__content > .mds-btn {
+    margin-top: 22px;
+  }
+}
+
 /* ========================================
    HOMEPAGE CONSULTATION
 ======================================== */

@@ -27,37 +27,31 @@ $why_image    = get_stylesheet_directory_uri() . '/assets/images/home-complete-s
             </p>
 
             <h2 class="mds-home-why__title" id="<?php echo esc_attr( $why_title_id ); ?>">
-                تمام جزئیات یک استایل،
-                <span>در یک مقصد</span>
+                به‌جای خرید پراکنده،
+                <span>یک انتخاب هماهنگ</span>
             </h2>
 
             <p class="mds-home-why__lead">
-                انتخاب عروس فقط پیدا کردن یک لباس نیست. وقتی تور، کفش، کیف، اکسسوری و زیورآلات کنار هم دیده شوند، نتیجه هماهنگ‌تر و تصمیم‌گیری مطمئن‌تر می‌شود.
+                تمام جزئیات استایل عروس را کنار هم ببینید، مقایسه کنید و مطمئن‌تر انتخاب کنید.
             </p>
 
-            <ol class="mds-home-why__benefits">
-                <li>
-                    <span class="mds-home-why__benefit-number">۱</span>
-                    <div>
-                        <h3>انتخاب هماهنگ، نه خرید پراکنده</h3>
-                        <p>جزئیات استایل را هم‌زمان مقایسه کنید تا رنگ، فرم و حال‌وهوای همه‌چیز با هم هماهنگ باشد.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="mds-home-why__benefit-number">۲</span>
-                    <div>
-                        <h3>مشاوره برای ساختن یک استایل کامل</h3>
-                        <p>از انتخاب قطعه اصلی تا آخرین اکسسوری، تصمیم‌ها بر اساس سلیقه و نیاز شما کنار هم قرار می‌گیرند.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="mds-home-why__benefit-number">۳</span>
-                    <div>
-                        <h3>از مراسم عقد تا روز عروسی</h3>
-                        <p>پوشاک، ملزومات بله‌برون و اکسسوری‌های مراسم در یک مسیر یکپارچه در دسترس شماست.</p>
-                    </div>
-                </li>
-            </ol>
+            <div class="mds-home-why__comparison" aria-label="تفاوت انتخاب در گالری مظهری">
+                <p>
+                    <span>چند فروشگاه</span>
+                    <span class="mds-home-why__comparison-arrow" aria-hidden="true">←</span>
+                    <strong>یک مقصد کامل</strong>
+                </p>
+                <p>
+                    <span>انتخاب‌های جدا</span>
+                    <span class="mds-home-why__comparison-arrow" aria-hidden="true">←</span>
+                    <strong>استایل هماهنگ</strong>
+                </p>
+                <p>
+                    <span>تصمیم‌گیری سخت</span>
+                    <span class="mds-home-why__comparison-arrow" aria-hidden="true">←</span>
+                    <strong>مشاوره تخصصی</strong>
+                </p>
+            </div>
 
             <a class="mds-btn mds-btn--primary" href="#appointment">
                 دریافت مشاوره انتخاب
@@ -77,18 +71,10 @@ $why_image    = get_stylesheet_directory_uri() . '/assets/images/home-complete-s
                 >
             </div>
 
-            <p class="mds-home-why__image-note">
-                <strong>۹ خانواده محصول</strong>
-                همه‌چیز کنار هم
+            <p class="mds-home-why__image-caption">
+                <span lang="en">9 Collections · One Destination</span>
+                <strong>از تور تا آخرین اکسسوری</strong>
             </p>
-        </div>
-    </div>
-
-    <div class="mds-home-why__promise" aria-label="خدمات گالری مظهری">
-        <div class="mds-container">
-            <p><strong>انتخاب یکپارچه</strong><span>برای تمام جزئیات عروس</span></p>
-            <p><strong>مشاوره تخصصی</strong><span>متناسب با استایل شما</span></p>
-            <p><strong>تنوع کامل</strong><span>از عقد تا روز عروسی</span></p>
         </div>
     </div>
 </section>
