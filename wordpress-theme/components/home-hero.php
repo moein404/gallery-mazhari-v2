@@ -36,16 +36,11 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
                     مشاهده دسته‌بندی‌ها
                     <span aria-hidden="true">←</span>
                 </a>
-                <a class="mds-btn mds-btn--secondary" href="<?php echo esc_url( $home_url . '#appointment' ); ?>">
-                    دریافت مشاوره
-                </a>
             </div>
 
-            <ul class="mds-home-hero__features" aria-label="مزایای گالری مظهری">
-                <li>پوشاک و تور عروس</li>
-                <li>کفش، کیف و اکسسوری</li>
-                <li>ملزومات عقد و بله‌برون</li>
-            </ul>
+            <p class="mds-home-hero__signature" lang="en">
+                The Bridal Edit <span aria-hidden="true">·</span> Gallery Mazhari
+            </p>
         </div>
 
         <div class="mds-home-hero__visual">
@@ -59,11 +54,6 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
                     decoding="async"
                 >
             </div>
-
-            <p class="mds-home-hero__image-note">
-                <span>همه‌چیز برای عروس</span>
-                در یک مجموعه
-            </p>
         </div>
     </div>
 </section>
