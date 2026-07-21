@@ -72,49 +72,16 @@ function mazhari_get_site_header_markup() {
  * which avoids Bricks incorrectly treating the shortcode content as empty.
  */
 function mazhari_header_shortcode() {
-    if ( ! empty( $GLOBALS['mazhari_site_header_rendered'] ) ) {
-        return '';
-    }
-
     return mazhari_get_site_header_markup();
 }
 
 add_shortcode( 'mazhari_header', 'mazhari_header_shortcode' );
 
 /**
- * Render the site header independently of the Bricks Shortcode element.
- */
-function mazhari_render_site_header() {
-    if ( ! empty( $GLOBALS['mazhari_site_header_rendered'] ) ) {
-        return;
-    }
-
-    $header_markup = mazhari_get_site_header_markup();
-
-    if ( '' === $header_markup ) {
-        return;
-    }
-
-    $GLOBALS['mazhari_site_header_rendered'] = true;
-
-    echo $header_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-}
-
-add_action( 'bricks_before_header', 'mazhari_render_site_header', 10 );
-add_action( 'bricks_body', 'mazhari_render_site_header', 20 );
-add_action( 'wp_body_open', 'mazhari_render_site_header', 20 );
-
-/**
  * Replace an empty Bricks header render with the custom site header.
  */
 function mazhari_filter_bricks_header( $header_html ) {
     if ( false !== strpos( $header_html, 'class="mds-site-header"' ) ) {
-        $GLOBALS['mazhari_site_header_rendered'] = true;
-
-        return $header_html;
-    }
-
-    if ( ! empty( $GLOBALS['mazhari_site_header_rendered'] ) ) {
         return $header_html;
     }
 
@@ -123,8 +90,6 @@ function mazhari_filter_bricks_header( $header_html ) {
     if ( '' === $header_markup ) {
         return $header_html;
     }
-
-    $GLOBALS['mazhari_site_header_rendered'] = true;
 
     $closing_tag_position = strpos( $header_html, '</header>' );
 
