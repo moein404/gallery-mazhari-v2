@@ -148,6 +148,26 @@ function mazhari_home_categories_shortcode() {
 add_shortcode( 'mazhari_home_categories', 'mazhari_home_categories_shortcode' );
 
 /**
+ * Homepage value proposition shortcode for use below the categories.
+ */
+function mazhari_home_why_shortcode() {
+    $component_file = get_stylesheet_directory()
+        . '/components/home-why.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode( 'mazhari_home_why', 'mazhari_home_why_shortcode' );
+
+/**
  * Component Library Shortcode
  */
 function mazhari_component_library_shortcode() {
