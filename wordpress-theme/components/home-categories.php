@@ -113,3 +113,11 @@ $categories          = array(
         </div>
     </div>
 </section>
+
+<?php
+$special_accessories_component = get_stylesheet_directory()
+    . '/components/home-special-accessories.php';
+
+if ( file_exists( $special_accessories_component ) ) {
+    include $special_accessories_component;
+}
