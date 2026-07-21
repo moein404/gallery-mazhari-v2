@@ -342,6 +342,26 @@ add_action( 'admin_post_mazhari_consultation', 'mazhari_handle_consultation_form
 add_action( 'admin_post_nopriv_mazhari_consultation', 'mazhari_handle_consultation_form' );
 
 /**
+ * Homepage FAQ shortcode for use below the consultation form.
+ */
+function mazhari_home_faq_shortcode() {
+    $component_file = get_stylesheet_directory()
+        . '/components/home-faq.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode( 'mazhari_home_faq', 'mazhari_home_faq_shortcode' );
+
+/**
  * Component Library Shortcode
  */
 function mazhari_component_library_shortcode() {

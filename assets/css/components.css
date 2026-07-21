@@ -1984,3 +1984,300 @@
     transition-duration: .01ms !important;
   }
 }
+
+/* ========================================
+   HOMEPAGE FAQ
+======================================== */
+
+.mds-home-faq {
+  position: relative;
+  padding-block: clamp(84px, 9vw, 136px);
+  overflow: hidden;
+  scroll-margin-top: 110px;
+  color: var(--mds-color-heading);
+  background: var(--mds-color-background);
+}
+
+.mds-home-faq::before {
+  content: "";
+  position: absolute;
+  right: -170px;
+  bottom: -230px;
+  width: 430px;
+  height: 430px;
+  border: 1px solid rgba(183, 149, 69, .14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mds-home-faq__inner {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 48px), 1240px);
+  display: grid;
+  grid-template-columns: minmax(300px, .58fr) minmax(0, 1.12fr);
+  align-items: start;
+  gap: clamp(50px, 8vw, 118px);
+}
+
+.mds-home-faq__header {
+  position: sticky;
+  top: 132px;
+}
+
+.admin-bar .mds-home-faq__header {
+  top: 164px;
+}
+
+.mds-home-faq__eyebrow {
+  margin: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--mds-color-primary-hover);
+  font-size: 14px;
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-home-faq__eyebrow span {
+  width: 42px;
+  height: 1px;
+  background: currentColor;
+}
+
+.mds-home-faq__title {
+  margin: 0;
+  color: var(--mds-color-heading);
+  font-family: var(--mds-font-display);
+  font-size: clamp(40px, 4.6vw, 64px);
+  font-weight: var(--mds-font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: -.02em;
+}
+
+.mds-home-faq__title span {
+  display: block;
+  color: var(--mds-color-primary-hover);
+}
+
+.mds-home-faq__intro {
+  margin: 22px 0 0;
+  color: var(--mds-color-text);
+  font-size: 14px;
+  line-height: 2;
+}
+
+.mds-home-faq__contact {
+  margin-top: 32px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 11px;
+  background: #f3eee5;
+  border: 1px solid rgba(183, 149, 69, .24);
+  border-radius: 3px 3px 24px 3px;
+}
+
+.mds-home-faq__contact > span {
+  color: var(--mds-color-primary-hover);
+}
+
+.mds-home-faq__contact p {
+  margin: 0;
+  color: var(--mds-color-text-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.mds-home-faq__contact strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--mds-color-heading);
+  font-family: var(--mds-font-display);
+  font-size: 17px;
+}
+
+.mds-home-faq__contact a {
+  margin-top: 14px;
+  grid-column: 2;
+  justify-self: start;
+  color: var(--mds-color-primary-hover);
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-home-faq__list {
+  border-top: 1px solid var(--mds-color-border);
+}
+
+.mds-faq-item {
+  border-bottom: 1px solid var(--mds-color-border);
+}
+
+.mds-faq-item summary {
+  min-height: 100px;
+  padding-block: 24px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 16px;
+  color: var(--mds-color-heading);
+  cursor: pointer;
+  list-style: none;
+}
+
+.mds-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.mds-faq-item summary:focus-visible {
+  outline: 2px solid var(--mds-color-primary);
+  outline-offset: 5px;
+}
+
+.mds-faq-item__number {
+  color: var(--mds-color-primary-hover);
+  font-family: var(--mds-font-english);
+  font-size: 12px;
+  letter-spacing: .06em;
+}
+
+.mds-faq-item__question {
+  font-family: var(--mds-font-display);
+  font-size: clamp(18px, 1.6vw, 23px);
+  font-weight: var(--mds-font-weight-semibold);
+  line-height: 1.65;
+}
+
+.mds-faq-item__toggle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(183, 149, 69, .38);
+  border-radius: 50%;
+  transition:
+    background var(--mds-transition-fast),
+    transform var(--mds-transition-base);
+}
+
+.mds-faq-item__toggle::before,
+.mds-faq-item__toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1px;
+  background: var(--mds-color-primary-hover);
+  transform: translate(-50%, -50%);
+  transition:
+    background var(--mds-transition-fast),
+    transform var(--mds-transition-base),
+    opacity var(--mds-transition-fast);
+}
+
+.mds-faq-item__toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.mds-faq-item[open] .mds-faq-item__toggle {
+  background: var(--mds-color-primary);
+  transform: rotate(180deg);
+}
+
+.mds-faq-item[open] .mds-faq-item__toggle::before,
+.mds-faq-item[open] .mds-faq-item__toggle::after {
+  background: var(--mds-color-text-light);
+}
+
+.mds-faq-item[open] .mds-faq-item__toggle::after {
+  opacity: 0;
+}
+
+.mds-faq-item__answer {
+  padding: 0 56px 27px 58px;
+}
+
+.mds-faq-item__answer p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--mds-color-text-muted);
+  font-size: 14px;
+  line-height: 2.05;
+}
+
+@media (max-width: 64rem) {
+  .mds-home-faq__inner {
+    grid-template-columns: minmax(260px, .52fr) minmax(0, 1fr);
+    gap: 50px;
+  }
+
+  .mds-faq-item summary {
+    grid-template-columns: 32px minmax(0, 1fr) 38px;
+    gap: 12px;
+  }
+
+  .mds-faq-item__answer {
+    padding-right: 44px;
+    padding-left: 50px;
+  }
+}
+
+@media (max-width: 52rem) {
+  .mds-home-faq__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .mds-home-faq__header {
+    position: static;
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 40rem) {
+  .mds-home-faq {
+    padding-block: 70px;
+    scroll-margin-top: 82px;
+  }
+
+  .mds-home-faq__inner {
+    width: calc(100% - 32px);
+    gap: 42px;
+  }
+
+  .mds-home-faq__title {
+    font-size: clamp(36px, 10vw, 46px);
+  }
+
+  .mds-faq-item summary {
+    min-height: 88px;
+    grid-template-columns: 26px minmax(0, 1fr) 34px;
+    gap: 9px;
+  }
+
+  .mds-faq-item__question {
+    font-size: 17px;
+  }
+
+  .mds-faq-item__toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mds-faq-item__answer {
+    padding: 0 35px 24px 42px;
+  }
+
+  .mds-faq-item__answer p {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mds-faq-item__toggle,
+  .mds-faq-item__toggle::before,
+  .mds-faq-item__toggle::after {
+    transition-duration: .01ms !important;
+  }
+}
