@@ -111,6 +111,38 @@ add_action( 'bricks_body', 'mazhari_render_site_header', 20 );
 add_action( 'wp_body_open', 'mazhari_render_site_header', 20 );
 
 /**
+ * Replace an empty Bricks header render with the custom site header.
+ */
+function mazhari_filter_bricks_header( $header_html ) {
+    if ( ! empty( $GLOBALS['mazhari_site_header_rendered'] ) ) {
+        return $header_html;
+    }
+
+    $header_markup = mazhari_get_site_header_markup();
+
+    if ( '' === $header_markup ) {
+        return $header_html;
+    }
+
+    $GLOBALS['mazhari_site_header_rendered'] = true;
+
+    $closing_tag_position = strpos( $header_html, '</header>' );
+
+    if ( false !== $closing_tag_position ) {
+        return substr_replace(
+            $header_html,
+            $header_markup,
+            $closing_tag_position,
+            0
+        );
+    }
+
+    return $header_markup . $header_html;
+}
+
+add_filter( 'bricks/render_header', 'mazhari_filter_bricks_header', 10, 1 );
+
+/**
  * Homepage hero shortcode for use inside the Bricks Home page.
  */
 function mazhari_home_hero_shortcode() {
