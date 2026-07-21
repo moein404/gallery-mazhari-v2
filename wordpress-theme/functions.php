@@ -362,6 +362,47 @@ function mazhari_home_faq_shortcode() {
 add_shortcode( 'mazhari_home_faq', 'mazhari_home_faq_shortcode' );
 
 /**
+ * Build the global site footer markup.
+ */
+function mazhari_get_site_footer_markup() {
+    $component_file = get_stylesheet_directory()
+        . '/components/site-footer.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+/**
+ * Render one global footer before WordPress prints footer scripts.
+ */
+function mazhari_render_site_footer() {
+    static $rendered = false;
+
+    if ( $rendered ) {
+        return;
+    }
+
+    $footer_markup = mazhari_get_site_footer_markup();
+
+    if ( '' === $footer_markup ) {
+        return;
+    }
+
+    $rendered = true;
+
+    echo $footer_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+add_action( 'wp_footer', 'mazhari_render_site_footer', 5 );
+
+/**
  * Component Library Shortcode
  */
 function mazhari_component_library_shortcode() {

@@ -2281,3 +2281,300 @@
     transition-duration: .01ms !important;
   }
 }
+
+/* ========================================
+   GLOBAL SITE FOOTER
+======================================== */
+
+.mds-site-footer {
+  position: relative;
+  overflow: hidden;
+  color: rgba(255, 255, 255, .68);
+  background:
+    radial-gradient(circle at 5% 15%, rgba(183, 149, 69, .14), transparent 25%),
+    #171614;
+}
+
+.mds-site-footer::before {
+  content: "";
+  position: absolute;
+  right: -190px;
+  bottom: 80px;
+  width: 410px;
+  height: 410px;
+  border: 1px solid rgba(211, 177, 100, .12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mds-site-footer__cta,
+.mds-site-footer__main,
+.mds-site-footer__bottom > .mds-container {
+  width: min(calc(100% - 48px), 1240px);
+}
+
+.mds-site-footer__cta {
+  min-height: 170px;
+  padding-block: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, .11);
+}
+
+.mds-site-footer__cta > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.mds-site-footer__cta > div > span {
+  color: #d3b164;
+  font-size: 13px;
+  font-weight: var(--mds-font-weight-medium);
+}
+
+.mds-site-footer__cta strong {
+  margin-top: 5px;
+  color: var(--mds-color-text-light);
+  font-family: var(--mds-font-display);
+  font-size: clamp(25px, 3vw, 39px);
+  font-weight: var(--mds-font-weight-semibold);
+  line-height: 1.5;
+}
+
+.mds-btn--footer {
+  min-width: 180px;
+  color: #171614;
+  background: #d3b164;
+  flex: 0 0 auto;
+}
+
+.mds-btn--footer:hover,
+.mds-btn--footer:focus-visible {
+  color: var(--mds-color-text-light);
+  background: var(--mds-color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.mds-site-footer__main {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(58px, 7vw, 92px);
+  display: grid;
+  grid-template-columns: minmax(230px, 1.12fr) minmax(130px, .6fr) minmax(210px, .9fr) minmax(210px, .9fr);
+  align-items: start;
+  gap: clamp(34px, 5vw, 72px);
+}
+
+.mds-site-footer__brand > a {
+  width: 176px;
+  display: block;
+}
+
+.mds-site-footer__brand img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mds-site-footer__brand p {
+  max-width: 310px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, .52);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.mds-site-footer h2 {
+  margin: 0 0 21px;
+  color: var(--mds-color-text-light);
+  font-family: var(--mds-font-display);
+  font-size: 18px;
+  font-weight: var(--mds-font-weight-semibold);
+}
+
+.mds-site-footer h2::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  margin-top: 10px;
+  display: block;
+  background: #d3b164;
+}
+
+.mds-site-footer__nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  list-style: none;
+}
+
+.mds-site-footer__nav a,
+.mds-site-footer__map {
+  color: rgba(255, 255, 255, .59);
+  font-size: 13px;
+  transition: color var(--mds-transition-fast);
+}
+
+.mds-site-footer__nav a:hover,
+.mds-site-footer__nav a:focus-visible,
+.mds-site-footer__map:hover,
+.mds-site-footer__map:focus-visible {
+  color: #d3b164;
+}
+
+.mds-site-footer__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mds-site-footer__contact address {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, .54);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 2;
+}
+
+.mds-site-footer__phone {
+  margin-bottom: 7px;
+  color: rgba(255, 255, 255, .86);
+  font-family: var(--mds-font-english);
+  font-size: 14px;
+  letter-spacing: .035em;
+  transition: color var(--mds-transition-fast);
+}
+
+.mds-site-footer__phone:hover,
+.mds-site-footer__phone:focus-visible {
+  color: #d3b164;
+}
+
+.mds-site-footer__map {
+  margin-top: 10px;
+  border-bottom: 1px solid rgba(211, 177, 100, .45);
+}
+
+.mds-site-footer__support {
+  margin: 9px 0 0;
+  color: rgba(255, 255, 255, .45);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.mds-site-footer__bottom {
+  background: rgba(0, 0, 0, .18);
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.mds-site-footer__bottom > .mds-container {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.mds-site-footer__bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, .42);
+  font-size: 11px;
+}
+
+.mds-site-footer__bottom a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, .56);
+  font-size: 11px;
+  transition: color var(--mds-transition-fast);
+}
+
+.mds-site-footer__bottom a:hover,
+.mds-site-footer__bottom a:focus-visible {
+  color: #d3b164;
+}
+
+@media (max-width: 64rem) {
+  .mds-site-footer__main {
+    grid-template-columns: 1.1fr .7fr 1fr;
+  }
+
+  .mds-site-footer__contact:last-child {
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 52rem) {
+  .mds-site-footer__cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mds-site-footer__main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mds-site-footer__brand {
+    grid-column: span 2;
+  }
+
+  .mds-site-footer__contact:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 40rem) {
+  .mds-site-footer__cta,
+  .mds-site-footer__main,
+  .mds-site-footer__bottom > .mds-container {
+    width: calc(100% - 32px);
+  }
+
+  .mds-site-footer__cta {
+    min-height: 0;
+    padding-block: 44px;
+  }
+
+  .mds-btn--footer {
+    width: 100%;
+  }
+
+  .mds-site-footer__main {
+    grid-template-columns: 1fr;
+  }
+
+  .mds-site-footer__brand,
+  .mds-site-footer__contact:last-child {
+    grid-column: auto;
+  }
+
+  .mds-site-footer__main > * {
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+  }
+
+  .mds-site-footer__main > *:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .mds-site-footer__bottom > .mds-container {
+    min-height: 96px;
+    padding-block: 22px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mds-btn--footer,
+  .mds-site-footer a {
+    transition-duration: .01ms !important;
+  }
+}
