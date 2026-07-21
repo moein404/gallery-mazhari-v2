@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $categories_title_id = wp_unique_id( 'mds-home-categories-title-' );
-$category_images_uri = get_stylesheet_directory_uri() . '/assets/images/categories/';
+$category_images_uri = get_stylesheet_directory_uri() . '/assets/images/';
 $categories          = array(
     array(
         'number'      => '۰۱',
