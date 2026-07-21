@@ -49,9 +49,9 @@ function mazhari_register_navigation() {
 add_action( 'after_setup_theme', 'mazhari_register_navigation' );
 
 /**
- * Main site header shortcode for use inside a Bricks Header template.
+ * Build the main site header markup.
  */
-function mazhari_header_shortcode() {
+function mazhari_get_site_header_markup() {
     $component_file = get_stylesheet_directory()
         . '/components/site-header.php';
 
@@ -66,7 +66,35 @@ function mazhari_header_shortcode() {
     return ob_get_clean();
 }
 
+/**
+ * Keep the shortcode available for previews outside the rendered Bricks header.
+ * On the frontend the header is injected through bricks_before_header instead,
+ * which avoids Bricks incorrectly treating the shortcode content as empty.
+ */
+function mazhari_header_shortcode() {
+    if ( did_action( 'bricks_before_header' ) ) {
+        return '';
+    }
+
+    return mazhari_get_site_header_markup();
+}
+
 add_shortcode( 'mazhari_header', 'mazhari_header_shortcode' );
+
+/**
+ * Render the site header independently of the Bricks Shortcode element.
+ */
+function mazhari_render_site_header() {
+    $header_markup = mazhari_get_site_header_markup();
+
+    if ( '' === $header_markup ) {
+        return;
+    }
+
+    echo $header_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+add_action( 'bricks_before_header', 'mazhari_render_site_header', 10 );
 
 /**
  * Homepage hero shortcode for use inside the Bricks Home page.
