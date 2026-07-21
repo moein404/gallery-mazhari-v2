@@ -76,13 +76,7 @@ function mazhari_header_shortcode() {
         return '';
     }
 
-    $header_markup = mazhari_get_site_header_markup();
-
-    if ( '' !== $header_markup ) {
-        $GLOBALS['mazhari_site_header_rendered'] = true;
-    }
-
-    return $header_markup;
+    return mazhari_get_site_header_markup();
 }
 
 add_shortcode( 'mazhari_header', 'mazhari_header_shortcode' );
@@ -114,6 +108,12 @@ add_action( 'wp_body_open', 'mazhari_render_site_header', 20 );
  * Replace an empty Bricks header render with the custom site header.
  */
 function mazhari_filter_bricks_header( $header_html ) {
+    if ( false !== strpos( $header_html, 'class="mds-site-header"' ) ) {
+        $GLOBALS['mazhari_site_header_rendered'] = true;
+
+        return $header_html;
+    }
+
     if ( ! empty( $GLOBALS['mazhari_site_header_rendered'] ) ) {
         return $header_html;
     }
