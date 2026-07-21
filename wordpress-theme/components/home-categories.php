@@ -76,6 +76,15 @@ $categories          = array(
     aria-labelledby="<?php echo esc_attr( $categories_title_id ); ?>"
 >
     <div class="mds-home-categories__inner mds-container">
+        <?php
+        $clothing_spotlight_component = get_stylesheet_directory()
+            . '/components/home-clothing-spotlight.php';
+
+        if ( file_exists( $clothing_spotlight_component ) ) {
+            include $clothing_spotlight_component;
+        }
+        ?>
+
         <header class="mds-home-categories__header">
             <p class="mds-home-categories__eyebrow" lang="en">
                 Collections <span aria-hidden="true">09</span>

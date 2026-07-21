@@ -65,10 +65,10 @@ if ( function_exists( 'wc_get_product' ) && taxonomy_exists( 'product_cat' ) ) {
                 The Finishing Touch
             </p>
             <h2 class="mds-home-special__title" id="<?php echo esc_attr( $special_title_id ); ?>">
-                چیزی از قلم نیفته!
+                جزئیاتی که استایل را امضا می‌کنند
             </h2>
             <p class="mds-home-special__lead">
-                جزئیات کوچکی که استایل عروس را کامل می‌کنند.
+                بادبزن و اکسسوری‌های خاص؛ برای اینکه چیزی از قلم نیفتد.
             </p>
         </header>
 
