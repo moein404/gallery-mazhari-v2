@@ -93,10 +93,223 @@ function mazhari_get_product_category_definitions() {
 }
 
 /**
+ * Approved child categories, including the three bridal-dress collections.
+ *
+ * Definitions are ordered so every parent is available before its children.
+ */
+function mazhari_get_product_subcategory_definitions() {
+    return array(
+        'bridal-dresses' => array(
+            'name'        => 'لباس عروس',
+            'parent'      => 'bridal-clothing',
+            'description' => 'مجموعه لباس‌های عروس در سبک‌ها و فرم‌های متنوع.',
+        ),
+        'european-bridal-dresses' => array(
+            'name'        => 'اروپایی',
+            'parent'      => 'bridal-dresses',
+            'description' => 'لباس عروس با طراحی و استایل اروپایی.',
+        ),
+        'arabic-bridal-dresses' => array(
+            'name'        => 'عربی',
+            'parent'      => 'bridal-dresses',
+            'description' => 'لباس عروس با طراحی مجلل و استایل عربی.',
+        ),
+        'mermaid-bridal-dresses' => array(
+            'name'        => 'ماهی',
+            'parent'      => 'bridal-dresses',
+            'description' => 'لباس عروس با فرم اندامی و مدل ماهی.',
+        ),
+        'ceremony-suits' => array(
+            'name'        => 'کت‌وشلوار عقد',
+            'parent'      => 'bridal-clothing',
+            'description' => 'کت‌وشلوارهای ویژه مراسم عقد و محضر.',
+        ),
+        'bridal-gloves' => array(
+            'name'        => 'دستکش',
+            'parent'      => 'bridal-clothing',
+            'description' => 'دستکش‌های عروس هماهنگ با لباس و استایل مراسم.',
+        ),
+        'bridal-robes' => array(
+            'name'        => 'روبدوشامبر',
+            'parent'      => 'bridal-clothing',
+            'description' => 'روبدوشامبر عروس برای آماده‌شدن و عکاسی روز مراسم.',
+        ),
+        'bridal-capes' => array(
+            'name'        => 'شنل',
+            'parent'      => 'bridal-clothing',
+            'description' => 'شنل عروس برای تکمیل پوشش و استایل مراسم.',
+        ),
+        'bridal-shoes' => array(
+            'name'        => 'کفش عروس',
+            'parent'      => 'bridal-shoes-bags',
+            'description' => 'کفش‌های عروس برای استایل‌های رسمی و مجلسی.',
+        ),
+        'bridal-sneakers' => array(
+            'name'        => 'کتونی عروس',
+            'parent'      => 'bridal-shoes-bags',
+            'description' => 'کتونی‌های راحت و ویژه عروس برای مراسم و فرمالیته.',
+        ),
+        'bridal-bags' => array(
+            'name'        => 'کیف عروس',
+            'parent'      => 'bridal-shoes-bags',
+            'description' => 'کیف‌های عروس هماهنگ با لباس، کفش و اکسسوری‌ها.',
+        ),
+        'bridal-tiaras' => array(
+            'name'        => 'تاج',
+            'parent'      => 'bridal-hair-accessories',
+            'description' => 'تاج‌های عروس برای استایل‌های کلاسیک و مدرن.',
+        ),
+        'bridal-headbands' => array(
+            'name'        => 'تل',
+            'parent'      => 'bridal-hair-accessories',
+            'description' => 'تل‌های ظریف و مجلسی برای تکمیل مدل موی عروس.',
+        ),
+        'imported-hair-vines' => array(
+            'name'        => 'ریسه وارداتی',
+            'parent'      => 'bridal-hair-accessories',
+            'description' => 'ریسه‌های موی وارداتی برای استایل عروس.',
+        ),
+        'iranian-hair-vines' => array(
+            'name'        => 'ریسه ایرانی',
+            'parent'      => 'bridal-hair-accessories',
+            'description' => 'ریسه‌های موی ایرانی برای استایل عروس.',
+        ),
+        'bridal-hairpins' => array(
+            'name'        => 'سنجاق شینیون',
+            'parent'      => 'bridal-hair-accessories',
+            'description' => 'سنجاق‌های شینیون برای تزئین و تثبیت مدل موی عروس.',
+        ),
+        'bridal-flower-crowns' => array(
+            'name'        => 'حلقه گل',
+            'parent'      => 'bridal-hair-accessories',
+            'description' => 'حلقه گل برای استایل‌های لطیف و فرمالیته عروس.',
+        ),
+        'bridal-jewelry-sets' => array(
+            'name'        => 'سرویس',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'سرویس‌های زیورآلات هماهنگ برای استایل عروس.',
+        ),
+        'bridal-half-sets' => array(
+            'name'        => 'نیم‌ست',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'نیم‌ست‌های ظریف و مجلسی ویژه عروس.',
+        ),
+        'bridal-earrings' => array(
+            'name'        => 'گوشواره',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'گوشواره‌های عروس در سبک‌های ظریف و درخشان.',
+        ),
+        'bridal-rings' => array(
+            'name'        => 'انگشتر',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'انگشترهای مجلسی برای تکمیل زیورآلات عروس.',
+        ),
+        'bridal-anklets' => array(
+            'name'        => 'پابند',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'پابندهای ظریف و هماهنگ با استایل عروس.',
+        ),
+        'bridal-bracelets' => array(
+            'name'        => 'دستبند',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'دستبندهای مجلسی و درخشان ویژه عروس.',
+        ),
+        'bridal-brooches' => array(
+            'name'        => 'سنجاق سینه',
+            'parent'      => 'bridal-jewelry',
+            'description' => 'سنجاق سینه برای تکمیل جزئیات استایل عروس.',
+        ),
+        'bridal-caps' => array(
+            'name'        => 'کلاه و کاپ کلاه',
+            'parent'      => 'bridal-headwear',
+            'description' => 'کلاه و کاپ کلاه ویژه استایل حجاب عروس.',
+        ),
+        'bridal-chadors' => array(
+            'name'        => 'چادر عروس',
+            'parent'      => 'bridal-headwear',
+            'description' => 'چادرهای ویژه عقد، محضر و مراسم عروس.',
+        ),
+        'bridal-turbans' => array(
+            'name'        => 'توربان',
+            'parent'      => 'bridal-headwear',
+            'description' => 'توربان‌های مجلسی برای استایل حجاب عروس.',
+        ),
+        'bridal-headscarves' => array(
+            'name'        => 'هدشال',
+            'parent'      => 'bridal-headwear',
+            'description' => 'هدشال‌های عروس برای استایل‌های پوشیده و مجلسی.',
+        ),
+        'engagement-ceremony-sets' => array(
+            'name'        => 'ست بله‌برون',
+            'parent'      => 'engagement-ceremony-essentials',
+            'description' => 'ست‌های هماهنگ و کامل برای مراسم بله‌برون.',
+        ),
+        'three-size-ceremony-baskets' => array(
+            'name'        => 'سبد سه سایز',
+            'parent'      => 'engagement-ceremony-essentials',
+            'description' => 'سبدهای سه سایز برای چیدمان عقد و بله‌برون.',
+        ),
+    );
+}
+
+/**
+ * Create or align a single WooCommerce product category.
+ */
+function mazhari_upsert_product_category( $slug, $category, $parent_id = 0 ) {
+    $existing_term = get_term_by( 'slug', $slug, 'product_cat' );
+    $term_data     = array(
+        'name'        => $category['name'],
+        'slug'        => $slug,
+        'description' => $category['description'],
+        'parent'      => (int) $parent_id,
+    );
+
+    if ( $existing_term ) {
+        $term_changed = (
+            $existing_term->name !== $term_data['name']
+            || $existing_term->description !== $term_data['description']
+            || (int) $existing_term->parent !== $term_data['parent']
+        );
+
+        if ( ! $term_changed ) {
+            return (int) $existing_term->term_id;
+        }
+
+        $updated_term = wp_update_term(
+            $existing_term->term_id,
+            'product_cat',
+            $term_data
+        );
+
+        if ( is_wp_error( $updated_term ) ) {
+            return $updated_term;
+        }
+
+        return (int) $updated_term['term_id'];
+    }
+
+    $inserted_term = wp_insert_term(
+        $category['name'],
+        'product_cat',
+        array(
+            'slug'        => $slug,
+            'description' => $category['description'],
+            'parent'      => (int) $parent_id,
+        )
+    );
+
+    if ( is_wp_error( $inserted_term ) ) {
+        return $inserted_term;
+    }
+
+    return (int) $inserted_term['term_id'];
+}
+
+/**
  * Create the approved WooCommerce category structure once.
  */
 function mazhari_install_product_categories() {
-    $category_version = '1';
+    $category_version = '2';
 
     if (
         ! taxonomy_exists( 'product_cat' )
@@ -106,26 +319,42 @@ function mazhari_install_product_categories() {
     }
 
     $all_categories_ready = true;
+    $category_term_ids    = array();
 
     foreach ( mazhari_get_product_category_definitions() as $slug => $category ) {
-        $existing_term = get_term_by( 'slug', $slug, 'product_cat' );
+        $term_id = mazhari_upsert_product_category( $slug, $category );
 
-        if ( $existing_term ) {
+        if ( is_wp_error( $term_id ) ) {
+            $all_categories_ready = false;
             continue;
         }
 
-        $inserted_term = wp_insert_term(
-            $category['name'],
-            'product_cat',
-            array(
-                'slug'        => $slug,
-                'description' => $category['description'],
-            )
+        $category_term_ids[ $slug ] = $term_id;
+    }
+
+    foreach ( mazhari_get_product_subcategory_definitions() as $slug => $category ) {
+        $parent_slug = $category['parent'];
+        $parent_id   = isset( $category_term_ids[ $parent_slug ] )
+            ? $category_term_ids[ $parent_slug ]
+            : 0;
+
+        if ( ! $parent_id ) {
+            $all_categories_ready = false;
+            continue;
+        }
+
+        $term_id = mazhari_upsert_product_category(
+            $slug,
+            $category,
+            $parent_id
         );
 
-        if ( is_wp_error( $inserted_term ) ) {
+        if ( is_wp_error( $term_id ) ) {
             $all_categories_ready = false;
+            continue;
         }
+
+        $category_term_ids[ $slug ] = $term_id;
     }
 
     if ( $all_categories_ready ) {
