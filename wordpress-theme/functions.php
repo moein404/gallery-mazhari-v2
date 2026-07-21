@@ -128,6 +128,26 @@ function mazhari_home_hero_shortcode() {
 add_shortcode( 'mazhari_home_hero', 'mazhari_home_hero_shortcode' );
 
 /**
+ * Homepage category showcase shortcode for use below the hero.
+ */
+function mazhari_home_categories_shortcode() {
+    $component_file = get_stylesheet_directory()
+        . '/components/home-categories.php';
+
+    if ( ! file_exists( $component_file ) ) {
+        return '';
+    }
+
+    ob_start();
+
+    include $component_file;
+
+    return ob_get_clean();
+}
+
+add_shortcode( 'mazhari_home_categories', 'mazhari_home_categories_shortcode' );
+
+/**
  * Component Library Shortcode
  */
 function mazhari_component_library_shortcode() {
