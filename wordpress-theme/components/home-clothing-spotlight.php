@@ -67,7 +67,7 @@ $clothing_images_uri         = get_stylesheet_directory_uri() . '/assets/images/
         </figure>
         <figure class="mds-clothing-spotlight__image mds-clothing-spotlight__image--suit">
             <img
-                src="<?php echo esc_url( $clothing_images_uri . 'bridal-suit-soli.webp' ); ?>"
+                src="<?php echo esc_url( $clothing_images_uri . 'bridal-suit-soli-editorial.webp' ); ?>"
                 alt=""
                 width="720"
                 height="960"
