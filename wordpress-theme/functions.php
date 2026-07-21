@@ -49,6 +49,119 @@ function mazhari_register_navigation() {
 add_action( 'after_setup_theme', 'mazhari_register_navigation' );
 
 /**
+ * Product categories used across the storefront.
+ */
+function mazhari_get_product_category_definitions() {
+    return array(
+        'bridal-clothing' => array(
+            'name'        => 'پوشاک عروس',
+            'description' => 'لباس و پوشاک عروس برای مراسم عروسی، عقد و فرمالیته.',
+        ),
+        'bridal-veils' => array(
+            'name'        => 'تور سر',
+            'description' => 'مدل‌های متنوع تور سر برای تکمیل استایل عروس.',
+        ),
+        'bridal-shoes-bags' => array(
+            'name'        => 'کفش، کتونی و کیف',
+            'description' => 'کفش، کتونی و کیف هماهنگ با استایل و مراسم عروس.',
+        ),
+        'bridal-hair-accessories' => array(
+            'name'        => 'اکسسوری مو',
+            'description' => 'تاج، تل، ریسه و اکسسوری‌های تکمیل‌کننده استایل مو.',
+        ),
+        'bridal-jewelry' => array(
+            'name'        => 'زیورآلات',
+            'description' => 'زیورآلات و جزئیات درخشان برای استایل عروس.',
+        ),
+        'bridal-headwear' => array(
+            'name'        => 'حجاب مو',
+            'description' => 'کلاه، چادر، توربان و هدشال ویژه عروس.',
+        ),
+        'artificial-bridal-bouquets' => array(
+            'name'        => 'دسته‌گل مصنوعی',
+            'description' => 'دسته‌گل‌های مصنوعی ماندگار و هماهنگ با مراسم.',
+        ),
+        'special-bridal-accessories' => array(
+            'name'        => 'اکسسوری خاص عروس',
+            'description' => 'اکسسوری‌های متفاوت برای شخصی‌سازی استایل عروس.',
+        ),
+        'engagement-ceremony-essentials' => array(
+            'name'        => 'ملزومات عقد و بله‌برون',
+            'description' => 'ست‌ها، سبدها و ملزومات هماهنگ عقد و بله‌برون.',
+        ),
+    );
+}
+
+/**
+ * Create the approved WooCommerce category structure once.
+ */
+function mazhari_install_product_categories() {
+    $category_version = '1';
+
+    if (
+        ! taxonomy_exists( 'product_cat' )
+        || $category_version === get_option( 'mazhari_product_categories_version' )
+    ) {
+        return;
+    }
+
+    $all_categories_ready = true;
+
+    foreach ( mazhari_get_product_category_definitions() as $slug => $category ) {
+        $existing_term = get_term_by( 'slug', $slug, 'product_cat' );
+
+        if ( $existing_term ) {
+            continue;
+        }
+
+        $inserted_term = wp_insert_term(
+            $category['name'],
+            'product_cat',
+            array(
+                'slug'        => $slug,
+                'description' => $category['description'],
+            )
+        );
+
+        if ( is_wp_error( $inserted_term ) ) {
+            $all_categories_ready = false;
+        }
+    }
+
+    if ( $all_categories_ready ) {
+        update_option( 'mazhari_product_categories_version', $category_version, false );
+    }
+}
+add_action( 'init', 'mazhari_install_product_categories', 30 );
+
+/**
+ * Resolve a product category archive, with the shop as a safe fallback.
+ */
+function mazhari_get_product_category_url( $slug ) {
+    if ( taxonomy_exists( 'product_cat' ) ) {
+        $term = get_term_by( 'slug', sanitize_title( $slug ), 'product_cat' );
+
+        if ( $term ) {
+            $term_url = get_term_link( $term );
+
+            if ( ! is_wp_error( $term_url ) ) {
+                return $term_url;
+            }
+        }
+    }
+
+    if ( function_exists( 'wc_get_page_permalink' ) ) {
+        $shop_url = wc_get_page_permalink( 'shop' );
+
+        if ( $shop_url ) {
+            return $shop_url;
+        }
+    }
+
+    return home_url( '/#appointment' );
+}
+
+/**
  * Build the main site header markup.
  */
 function mazhari_get_site_header_markup() {

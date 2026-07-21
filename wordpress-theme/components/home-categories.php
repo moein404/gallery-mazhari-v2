@@ -13,47 +13,56 @@ $categories_title_id = wp_unique_id( 'mds-home-categories-title-' );
 $categories          = array(
     array(
         'number'      => '۰۱',
+        'slug'        => 'bridal-clothing',
         'title'       => 'پوشاک عروس',
         'description' => 'لباس عروس اروپایی، عربی و ماهی؛ کت‌وشلوار عقد، شنل، دستکش و روبدوشامبر',
         'featured'    => true,
     ),
     array(
         'number'      => '۰۲',
+        'slug'        => 'bridal-veils',
         'title'       => 'تور سر',
         'description' => 'مدل‌های متنوع برای تکمیل فرم لباس و استایل مو',
     ),
     array(
         'number'      => '۰۳',
+        'slug'        => 'bridal-shoes-bags',
         'title'       => 'کفش، کتونی و کیف',
         'description' => 'انتخاب‌های راحت و هماهنگ برای مراسم و فرمالیته',
     ),
     array(
         'number'      => '۰۴',
+        'slug'        => 'bridal-hair-accessories',
         'title'       => 'اکسسوری مو',
         'description' => 'تاج، تل، ریسه ایرانی و وارداتی، سنجاق شینیون و حلقه گل',
     ),
     array(
         'number'      => '۰۵',
+        'slug'        => 'bridal-jewelry',
         'title'       => 'زیورآلات',
         'description' => 'سرویس، نیم‌ست، گوشواره، انگشتر، پابند، دستبند و سنجاق سینه',
     ),
     array(
         'number'      => '۰۶',
+        'slug'        => 'bridal-headwear',
         'title'       => 'حجاب مو',
         'description' => 'کلاه و کاپ کلاه، چادر عروس، توربان و هدشال',
     ),
     array(
         'number'      => '۰۷',
+        'slug'        => 'artificial-bridal-bouquets',
         'title'       => 'دسته‌گل مصنوعی',
         'description' => 'ترکیب‌های ماندگار و ظریف، هماهنگ با رنگ و حال‌وهوای مراسم',
     ),
     array(
         'number'      => '۰۸',
+        'slug'        => 'special-bridal-accessories',
         'title'       => 'اکسسوری خاص عروس',
         'description' => 'جزئیات متفاوت برای شخصی‌سازی استایل و ساختن امضای شما',
     ),
     array(
         'number'      => '۰۹',
+        'slug'        => 'engagement-ceremony-essentials',
         'title'       => 'ملزومات عقد و بله‌برون',
         'description' => 'ست بله‌برون و سبدهای سه‌سایز برای یک چیدمان کامل و هماهنگ',
     ),
@@ -86,7 +95,11 @@ $categories          = array(
 
         <div class="mds-home-categories__grid">
             <?php foreach ( $categories as $category ) : ?>
-                <article class="mds-category-card<?php echo ! empty( $category['featured'] ) ? ' mds-category-card--featured' : ''; ?>">
+                <a
+                    class="mds-category-card<?php echo ! empty( $category['featured'] ) ? ' mds-category-card--featured' : ''; ?>"
+                    href="<?php echo esc_url( mazhari_get_product_category_url( $category['slug'] ) ); ?>"
+                    aria-label="<?php echo esc_attr( 'مشاهده محصولات ' . $category['title'] ); ?>"
+                >
                     <div class="mds-category-card__top" aria-hidden="true">
                         <span class="mds-category-card__number"><?php echo esc_html( $category['number'] ); ?></span>
                         <span class="mds-category-card__ornament"></span>
@@ -98,7 +111,7 @@ $categories          = array(
                     </div>
 
                     <span class="mds-category-card__seal" aria-hidden="true">✦</span>
-                </article>
+                </a>
             <?php endforeach; ?>
         </div>
 
