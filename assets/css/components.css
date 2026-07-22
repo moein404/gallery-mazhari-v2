@@ -1344,10 +1344,14 @@
 }
 
 .mds-home-categories__heading {
-  margin: 0 0 clamp(24px, 3.5vw, 38px);
-  padding: 13px 28px;
-  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto clamp(24px, 3.5vw, 38px);
+  padding: 12px 24px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   background: rgba(255, 253, 249, .72);
   border: 1px solid rgba(183, 149, 69, .32);
   border-radius: 999px;
@@ -1358,9 +1362,10 @@
   margin: 0;
   color: var(--mds-color-heading);
   font-family: var(--mds-font-display);
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(20px, 2vw, 28px);
   font-weight: var(--mds-font-weight-bold);
-  line-height: 1.35;
+  line-height: 1.55;
+  white-space: nowrap;
 }
 
 .mds-home-categories__gallery {
@@ -1427,8 +1432,12 @@
 .mds-home-categories__clothing-heading {
   width: fit-content;
   max-width: 100%;
-  margin-bottom: clamp(24px, 3.5vw, 38px);
+  margin: 0 auto clamp(24px, 3.5vw, 38px);
   padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background: rgba(255, 253, 249, .72);
   border: 1px solid rgba(183, 149, 69, .32);
   border-radius: 999px;
@@ -1438,9 +1447,9 @@
 .mds-home-categories__clothing-heading > strong {
   display: block;
   color: var(--mds-color-heading);
-  font-family: var(--mds-font-primary);
-  font-size: clamp(18px, 2vw, 25px);
-  font-weight: var(--mds-font-weight-medium);
+  font-family: var(--mds-font-display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: var(--mds-font-weight-bold);
   line-height: 1.55;
   letter-spacing: -.015em;
   white-space: nowrap;
@@ -1643,11 +1652,11 @@
 
   .mds-home-categories__heading {
     margin-bottom: 20px;
-    padding: 10px 20px;
+    padding: 9px 15px;
   }
 
   .mds-home-categories__heading h2 {
-    font-size: clamp(28px, 8.5vw, 35px);
+    font-size: clamp(15px, 4vw, 19px);
   }
 
   .mds-home-categories__gallery {
@@ -1661,7 +1670,7 @@
   }
 
   .mds-home-categories__clothing-heading > strong {
-    font-size: clamp(13px, 4vw, 18px);
+    font-size: clamp(15px, 4vw, 19px);
     line-height: 1.55;
   }
 
