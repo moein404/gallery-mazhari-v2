@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+$categories_title_id = wp_unique_id( 'mds-home-categories-title-' );
 $category_images_uri = get_stylesheet_directory_uri() . '/assets/images/';
 $categories          = array(
     array(
@@ -72,39 +73,54 @@ $categories          = array(
     class="mds-home-categories"
     id="collections"
     dir="rtl"
-    aria-label="دسته‌بندی محصولات عروس"
+    aria-labelledby="<?php echo esc_attr( $categories_title_id ); ?>"
 >
     <div class="mds-home-categories__inner mds-container">
-        <div class="mds-home-categories__grid">
-            <?php foreach ( $categories as $category ) : ?>
-                <a
-                    class="mds-category-card"
-                    href="<?php echo esc_url( mazhari_get_product_category_url( $category['slug'] ) ); ?>"
-                    aria-label="<?php echo esc_attr( 'مشاهده محصولات ' . $category['title'] ); ?>"
-                >
-                    <img
-                        class="mds-category-card__image"
-                        src="<?php echo esc_url( $category_images_uri . $category['image'] ); ?>"
-                        alt=""
-                        width="720"
-                        height="960"
-                        loading="lazy"
-                        decoding="async"
+        <div class="mds-home-categories__divider mds-home-categories__divider--intro" aria-hidden="true">
+            <span></span>
+        </div>
+
+        <header class="mds-home-categories__heading">
+            <h2 id="<?php echo esc_attr( $categories_title_id ); ?>">دسته‌بندی محصولات</h2>
+        </header>
+
+        <div class="mds-home-categories__gallery">
+            <div class="mds-home-categories__grid">
+                <?php foreach ( $categories as $category ) : ?>
+                    <a
+                        class="mds-category-card"
+                        href="<?php echo esc_url( mazhari_get_product_category_url( $category['slug'] ) ); ?>"
+                        aria-label="<?php echo esc_attr( 'مشاهده محصولات ' . $category['title'] ); ?>"
                     >
+                        <img
+                            class="mds-category-card__image"
+                            src="<?php echo esc_url( $category_images_uri . $category['image'] ); ?>"
+                            alt=""
+                            width="720"
+                            height="960"
+                            loading="lazy"
+                            decoding="async"
+                        >
 
-                    <div class="mds-category-card__content">
-                        <h3><?php echo esc_html( $category['title'] ); ?></h3>
-                        <p><?php echo esc_html( $category['description'] ); ?></p>
-                    </div>
+                        <div class="mds-category-card__content">
+                            <h3><?php echo esc_html( $category['title'] ); ?></h3>
+                            <p><?php echo esc_html( $category['description'] ); ?></p>
+                        </div>
 
-                    <span class="mds-category-card__arrow" aria-hidden="true">↖</span>
-                </a>
-            <?php endforeach; ?>
+                        <span class="mds-category-card__arrow" aria-hidden="true">↖</span>
+                    </a>
+                <?php endforeach; ?>
+            </div>
         </div>
 
         <div class="mds-home-categories__divider" aria-hidden="true">
             <span></span>
         </div>
+
+        <header class="mds-home-categories__clothing-heading">
+            <span lang="en">Bridal &amp; Ceremony Collections</span>
+            <strong>کالکشن‌های لباس عروس و استایل عقد</strong>
+        </header>
 
         <?php
         $clothing_spotlight_component = get_stylesheet_directory()

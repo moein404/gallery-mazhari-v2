@@ -1343,10 +1343,59 @@
   gap: 16px;
 }
 
+.mds-home-categories__heading {
+  margin: 0 0 clamp(24px, 3.5vw, 38px);
+  display: flex;
+  align-items: center;
+}
+
+.mds-home-categories__heading h2 {
+  margin: 0;
+  color: var(--mds-color-heading);
+  font-family: var(--mds-font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: var(--mds-font-weight-bold);
+  line-height: 1.35;
+}
+
+.mds-home-categories__gallery {
+  position: relative;
+  padding: clamp(12px, 2.2vw, 26px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0, rgba(183, 149, 69, .16), transparent 29%),
+    linear-gradient(145deg, rgba(255, 253, 249, .78), rgba(236, 227, 210, .68));
+  border: 1px solid rgba(183, 149, 69, .24);
+  border-radius: 30px;
+  box-shadow: 0 22px 60px rgba(48, 37, 22, .07);
+}
+
+.mds-home-categories__gallery::before {
+  content: "";
+  position: absolute;
+  top: -170px;
+  right: -170px;
+  width: 330px;
+  height: 330px;
+  border: 1px solid rgba(183, 149, 69, .16);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mds-home-categories__gallery .mds-home-categories__grid {
+  position: relative;
+  z-index: 1;
+}
+
 .mds-home-categories__divider {
   margin-block: clamp(46px, 6vw, 78px);
   display: flex;
   align-items: center;
+}
+
+.mds-home-categories__divider--intro {
+  margin-top: 0;
+  margin-bottom: clamp(34px, 4vw, 52px);
 }
 
 .mds-home-categories__divider::before,
@@ -1368,6 +1417,32 @@
   background: rgba(183, 149, 69, .13);
   border: 1px solid rgba(183, 149, 69, .62);
   transform: rotate(45deg);
+}
+
+.mds-home-categories__clothing-heading {
+  max-width: 780px;
+  margin-bottom: clamp(24px, 3.5vw, 38px);
+}
+
+.mds-home-categories__clothing-heading > span {
+  display: block;
+  margin-bottom: 7px;
+  direction: ltr;
+  color: var(--mds-color-primary-hover);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.mds-home-categories__clothing-heading > strong {
+  display: block;
+  color: var(--mds-color-heading);
+  font-family: var(--mds-font-display);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: var(--mds-font-weight-bold);
+  line-height: 1.4;
 }
 
 .mds-category-card,
@@ -1554,6 +1629,36 @@
 
   .mds-home-categories__divider {
     margin-block: 38px;
+  }
+
+  .mds-home-categories__divider--intro {
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+
+  .mds-home-categories__heading {
+    margin-bottom: 20px;
+  }
+
+  .mds-home-categories__heading h2 {
+    font-size: clamp(28px, 8.5vw, 35px);
+  }
+
+  .mds-home-categories__gallery {
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .mds-home-categories__clothing-heading {
+    margin-bottom: 20px;
+  }
+
+  .mds-home-categories__clothing-heading > span {
+    font-size: 7px;
+  }
+
+  .mds-home-categories__clothing-heading > strong {
+    font-size: clamp(25px, 7.8vw, 32px);
   }
 
   .mds-home-categories__header {
