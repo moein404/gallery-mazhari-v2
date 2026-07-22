@@ -119,7 +119,7 @@ $categories          = array(
 
         <header class="mds-home-categories__clothing-heading">
             <span lang="en">Bridal &amp; Ceremony Collections</span>
-            <strong>کالکشن‌های لباس عروس و استایل عقد</strong>
+            <strong>کالکشن لباس عروس و کت‌وشلوار عقد</strong>
         </header>
 
         <?php
@@ -130,6 +130,10 @@ $categories          = array(
             include $clothing_spotlight_component;
         }
         ?>
+
+        <div class="mds-home-categories__divider mds-home-categories__divider--outro" aria-hidden="true">
+            <span></span>
+        </div>
     </div>
 </section>
 

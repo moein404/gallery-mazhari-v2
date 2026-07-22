@@ -1439,10 +1439,15 @@
 .mds-home-categories__clothing-heading > strong {
   display: block;
   color: var(--mds-color-heading);
-  font-family: var(--mds-font-display);
-  font-size: clamp(28px, 3.4vw, 44px);
-  font-weight: var(--mds-font-weight-bold);
-  line-height: 1.4;
+  font-family: var(--mds-font-primary);
+  font-size: clamp(25px, 2.7vw, 36px);
+  font-weight: var(--mds-font-weight-medium);
+  line-height: 1.65;
+  letter-spacing: -.015em;
+}
+
+.mds-home-categories__divider--outro {
+  margin-bottom: 0;
 }
 
 .mds-category-card,
@@ -1658,7 +1663,9 @@
   }
 
   .mds-home-categories__clothing-heading > strong {
-    font-size: clamp(25px, 7.8vw, 32px);
+    max-width: 320px;
+    font-size: clamp(20px, 6.2vw, 24px);
+    line-height: 1.7;
   }
 
   .mds-home-categories__header {
