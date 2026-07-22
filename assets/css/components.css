@@ -2218,7 +2218,7 @@
 
 /* Editorial image grid */
 .mds-home-categories {
-  padding-block: clamp(72px, 8vw, 112px);
+  padding-block: clamp(48px, 5vw, 76px) clamp(72px, 8vw, 112px);
 }
 
 .mds-home-categories__header {
@@ -2560,7 +2560,7 @@
 
 @media (max-width: 40rem) {
   .mds-home-categories {
-    padding-block: 52px 68px;
+    padding-block: 34px 68px;
   }
 
   .mds-home-categories::before {
