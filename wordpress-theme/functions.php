@@ -94,6 +94,29 @@ function mazhari_register_curated_look_post_type() {
 add_action( 'init', 'mazhari_register_curated_look_post_type', 20 );
 
 /**
+ * Keep the public Curated Looks archive in the specialist-defined order.
+ */
+function mazhari_order_curated_look_archive( $query ) {
+    if (
+        is_admin()
+        || ! $query->is_main_query()
+        || ! $query->is_post_type_archive( 'mazhari_look' )
+    ) {
+        return;
+    }
+
+    $query->set(
+        'orderby',
+        array(
+            'menu_order' => 'ASC',
+            'date'       => 'DESC',
+        )
+    );
+    $query->set( 'posts_per_page', 12 );
+}
+add_action( 'pre_get_posts', 'mazhari_order_curated_look_archive' );
+
+/**
  * Flush curated-look routes once after this feature is deployed.
  */
 function mazhari_maybe_flush_curated_look_rewrites() {
