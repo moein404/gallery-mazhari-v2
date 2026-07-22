@@ -263,6 +263,190 @@ function mazhari_save_curated_look_meta( $post_id ) {
 add_action( 'save_post_mazhari_look', 'mazhari_save_curated_look_meta' );
 
 /**
+ * Attach an approved theme image to a seeded curated look.
+ */
+function mazhari_get_or_create_look_attachment( $filename, $post_id, $alt_text ) {
+    $existing_attachments = get_posts(
+        array(
+            'post_type'      => 'attachment',
+            'post_status'    => 'inherit',
+            'posts_per_page' => 1,
+            'fields'         => 'ids',
+            'meta_key'       => '_mazhari_theme_asset', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+            'meta_value'     => $filename, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+        )
+    );
+
+    if ( $existing_attachments ) {
+        return (int) $existing_attachments[0];
+    }
+
+    $source_path = get_stylesheet_directory() . '/assets/images/' . $filename;
+
+    if ( ! file_exists( $source_path ) || ! is_readable( $source_path ) ) {
+        return new WP_Error( 'mazhari_missing_look_image', 'Curated look image is unavailable.' );
+    }
+
+    $image_data = file_get_contents( $source_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+
+    if ( false === $image_data ) {
+        return new WP_Error( 'mazhari_unreadable_look_image', 'Curated look image could not be read.' );
+    }
+
+    $uploaded_file = wp_upload_bits( $filename, null, $image_data );
+
+    if ( ! empty( $uploaded_file['error'] ) ) {
+        return new WP_Error( 'mazhari_look_image_upload', $uploaded_file['error'] );
+    }
+
+    $file_type     = wp_check_filetype( $uploaded_file['file'] );
+    $attachment_id = wp_insert_attachment(
+        array(
+            'post_mime_type' => $file_type['type'],
+            'post_title'     => pathinfo( $filename, PATHINFO_FILENAME ),
+            'post_content'   => '',
+            'post_status'    => 'inherit',
+        ),
+        $uploaded_file['file'],
+        $post_id,
+        true
+    );
+
+    if ( is_wp_error( $attachment_id ) ) {
+        return $attachment_id;
+    }
+
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+
+    $attachment_metadata = wp_generate_attachment_metadata(
+        $attachment_id,
+        $uploaded_file['file']
+    );
+
+    if ( $attachment_metadata ) {
+        wp_update_attachment_metadata( $attachment_id, $attachment_metadata );
+    }
+
+    update_post_meta( $attachment_id, '_wp_attachment_image_alt', $alt_text );
+    update_post_meta( $attachment_id, '_mazhari_theme_asset', $filename );
+
+    return (int) $attachment_id;
+}
+
+/**
+ * Seed the first three editorial looks once, without overwriting future edits.
+ */
+function mazhari_seed_curated_looks() {
+    $seed_version = '1';
+
+    if (
+        $seed_version === get_option( 'mazhari_curated_look_seed_version' )
+        || ! post_type_exists( 'mazhari_look' )
+    ) {
+        return;
+    }
+
+    $seed_looks = array(
+        array(
+            'slug'         => 'ivory-reverie',
+            'title'        => 'رویای عاجی',
+            'excerpt'      => 'ترکیبی روشن و آرام از لباس اروپایی، تور لطیف و جزئیات ظریف؛ برای عروسی که زیبایی ماندگار را در سادگی می‌بیند.',
+            'content'      => "رویای عاجی با یک لباس عروس اروپایی آغاز می‌شود و با تور سبک، تاج ظریف، زیورآلات مینیمال و اکسسوری‌های روشن کامل می‌شود.\n\nانتخابی متعادل برای مراسمی کلاسیک، صمیمی و ماندگار.",
+            'image'        => 'home-hero-bride.webp',
+            'image_alt'    => 'استایل عروس اروپایی روشن و ظریف در فضای کلاسیک',
+            'style'        => 'Timeless European',
+            'mood'         => 'لطیف و جاودانه',
+            'ceremony'     => 'جشن عروسی و فرمالیته',
+            'suitable_for' => 'عروس‌هایی که استایل اروپایی، ظریف و بدون شلوغی را ترجیح می‌دهند.',
+        ),
+        array(
+            'slug'         => 'modern-vow',
+            'title'        => 'پیمان مدرن',
+            'excerpt'      => 'کت‌وشلوار عقد با خطوط تمیز و جزئیات حساب‌شده؛ انتخابی مطمئن برای یک مراسم معاصر و شخصی.',
+            'content'      => "پیمان مدرن برای عروسی ساخته شده که در مراسم عقد، سادگی را با شخصیت ترکیب می‌کند. کت‌وشلوار روشن در کنار کفش مینیمال، کیف ظریف و زیورآلات انتخاب‌شده، تصویری آرام و امروزی می‌سازد.\n\nاستایلی دقیق برای محضر، عقد رسمی و جشن‌های کوچک.",
+            'image'        => 'bridal-suit-soli-editorial.webp',
+            'image_alt'    => 'کت و شلوار روشن عقد با استایل مدرن و مینیمال',
+            'style'        => 'Modern Ceremony',
+            'mood'         => 'آرام و معاصر',
+            'ceremony'     => 'عقد، محضر و جشن کوچک',
+            'suitable_for' => 'عروس‌هایی که کت‌وشلوار روشن، فرم تمیز و استایل مدرن را می‌پسندند.',
+        ),
+        array(
+            'slug'         => 'golden-harmony',
+            'title'        => 'هماهنگی طلایی',
+            'excerpt'      => 'تور، تاج، زیورآلات، کفش و کیف در یک روایت هماهنگ؛ جزئیاتی که بدون رقابت با لباس، آن را کامل می‌کنند.',
+            'content'      => "هماهنگی طلایی از یک اصل ساده پیروی می‌کند: هر جزئیات باید در خدمت تصویر کامل عروس باشد. تور لطیف، تاج و زیورآلات طلایی، کفش و کیف روشن و دسته‌گلی آرام، در یک پالت منسجم کنار هم قرار می‌گیرند.\n\nانتخابی مناسب برای عروسی که می‌خواهد تمام اجزای استایلش یک زبان مشترک داشته باشند.",
+            'image'        => 'home-complete-selection.webp',
+            'image_alt'    => 'چیدمان هماهنگ تور، تاج، زیورآلات و اکسسوری‌های عروس',
+            'style'        => 'Golden Harmony',
+            'mood'         => 'گرم و هماهنگ',
+            'ceremony'     => 'عروسی کلاسیک و مجلل',
+            'suitable_for' => 'عروس‌هایی که به هماهنگی رنگ، متریال و تمام جزئیات استایل اهمیت می‌دهند.',
+        ),
+    );
+    $all_looks_ready = true;
+
+    foreach ( $seed_looks as $look_index => $seed_look ) {
+        $existing_look = get_page_by_path(
+            $seed_look['slug'],
+            OBJECT,
+            'mazhari_look'
+        );
+
+        if ( $existing_look ) {
+            $look_id = (int) $existing_look->ID;
+        } else {
+            $look_id = wp_insert_post(
+                array(
+                    'post_type'    => 'mazhari_look',
+                    'post_status'  => 'publish',
+                    'post_name'    => $seed_look['slug'],
+                    'post_title'   => $seed_look['title'],
+                    'post_excerpt' => $seed_look['excerpt'],
+                    'post_content' => $seed_look['content'],
+                    'menu_order'   => $look_index + 1,
+                ),
+                true
+            );
+        }
+
+        if ( is_wp_error( $look_id ) ) {
+            $all_looks_ready = false;
+            continue;
+        }
+
+        update_post_meta( $look_id, '_mazhari_look_style', $seed_look['style'] );
+        update_post_meta( $look_id, '_mazhari_look_mood', $seed_look['mood'] );
+        update_post_meta( $look_id, '_mazhari_look_ceremony', $seed_look['ceremony'] );
+        update_post_meta( $look_id, '_mazhari_look_suitable_for', $seed_look['suitable_for'] );
+        update_post_meta( $look_id, '_mazhari_selection_featured', '1' );
+        update_post_meta( $look_id, '_mazhari_seeded_look', '1' );
+
+        if ( has_post_thumbnail( $look_id ) ) {
+            continue;
+        }
+
+        $attachment_id = mazhari_get_or_create_look_attachment(
+            $seed_look['image'],
+            $look_id,
+            $seed_look['image_alt']
+        );
+
+        if ( is_wp_error( $attachment_id ) ) {
+            $all_looks_ready = false;
+            continue;
+        }
+
+        set_post_thumbnail( $look_id, $attachment_id );
+    }
+
+    if ( $all_looks_ready ) {
+        update_option( 'mazhari_curated_look_seed_version', $seed_version, false );
+    }
+}
+add_action( 'init', 'mazhari_seed_curated_looks', 35 );
+
+/**
  * Product categories used across the storefront.
  */
 function mazhari_get_product_category_definitions() {
