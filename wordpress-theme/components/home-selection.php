@@ -54,6 +54,10 @@ $selection_archive  = get_post_type_archive_link( 'mazhari_look' );
     dir="rtl"
     aria-labelledby="<?php echo esc_attr( $selection_title_id ); ?>"
 >
+    <div class="mds-home-selection__divider" aria-hidden="true">
+        <span></span>
+    </div>
+
     <div class="mds-home-selection__inner mds-container">
         <header class="mds-home-selection__header">
             <p class="mds-home-selection__eyebrow" lang="en">
@@ -67,7 +71,14 @@ $selection_archive  = get_post_type_archive_link( 'mazhari_look' );
             </p>
         </header>
 
-        <div class="mds-home-selection__grid">
+        <div class="mds-home-selection__browse">
+            <span>برای دیدن مدل‌های بیشتر ورق بزنید</span>
+            <button type="button" data-mds-selection-next aria-label="نمایش استایل بعدی">
+                <span aria-hidden="true">←</span>
+            </button>
+        </div>
+
+        <div class="mds-home-selection__grid" data-mds-selection-track>
             <?php foreach ( $selection_looks as $look_index => $selection_look ) : ?>
                 <?php
                 $look_id       = $selection_look->ID;

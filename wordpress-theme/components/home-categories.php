@@ -76,6 +76,12 @@ $categories          = array(
     aria-labelledby="<?php echo esc_attr( $categories_title_id ); ?>"
 >
     <div class="mds-home-categories__inner mds-container">
+        <header class="mds-home-categories__header">
+            <h2 class="mds-home-categories__title" id="<?php echo esc_attr( $categories_title_id ); ?>">
+                دسته‌بندی اصلی
+            </h2>
+        </header>
+
         <?php
         $clothing_spotlight_component = get_stylesheet_directory()
             . '/components/home-clothing-spotlight.php';
@@ -84,15 +90,6 @@ $categories          = array(
             include $clothing_spotlight_component;
         }
         ?>
-
-        <header class="mds-home-categories__header">
-            <p class="mds-home-categories__eyebrow" lang="en">
-                Collections <span aria-hidden="true">09</span>
-            </p>
-            <h2 class="mds-home-categories__title" id="<?php echo esc_attr( $categories_title_id ); ?>">
-                دسته‌بندی محصولات
-            </h2>
-        </header>
 
         <div class="mds-home-categories__grid">
             <?php foreach ( $categories as $category ) : ?>

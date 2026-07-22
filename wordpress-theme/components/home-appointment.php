@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $appointment_title_id = wp_unique_id( 'mds-home-appointment-title-' );
+$appointment_image    = get_stylesheet_directory_uri() . '/assets/images/home-complete-selection.webp';
 $form_status          = isset( $_GET['consultation'] )
     ? sanitize_key( wp_unslash( $_GET['consultation'] ) )
     : '';
@@ -47,6 +48,16 @@ $status_messages      = array(
 >
     <div class="mds-home-appointment__inner mds-container">
         <aside class="mds-home-appointment__intro">
+            <img
+                class="mds-home-appointment__intro-image"
+                src="<?php echo esc_url( $appointment_image ); ?>"
+                alt=""
+                width="1024"
+                height="1536"
+                loading="lazy"
+                decoding="async"
+            >
+
             <p class="mds-home-appointment__eyebrow">
                 <span aria-hidden="true"></span>
                 مشاوره انتخاب عروس

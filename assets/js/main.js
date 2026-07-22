@@ -67,4 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  document.querySelectorAll('[data-mds-selection-track]').forEach((track) => {
+    const section = track.closest('.mds-home-selection');
+    const nextButton = section?.querySelector('[data-mds-selection-next]');
+
+    nextButton?.addEventListener('click', () => {
+      const direction = getComputedStyle(track).direction === 'rtl' ? -1 : 1;
+      const card = track.querySelector('.mds-selection-card');
+      const distance = card ? card.getBoundingClientRect().width + 10 : track.clientWidth * .8;
+
+      track.scrollBy({
+        left: direction * distance,
+        behavior: 'smooth',
+      });
+    });
+  });
 });
