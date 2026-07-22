@@ -23,40 +23,23 @@ $why_image    = get_stylesheet_directory_uri() . '/assets/images/home-complete-s
         <div class="mds-home-why__content">
             <p class="mds-home-why__eyebrow">
                 <span aria-hidden="true"></span>
-                تفاوت گالری مظهری
+                از سال ۱۳۳۷
             </p>
 
             <h2 class="mds-home-why__title" id="<?php echo esc_attr( $why_title_id ); ?>">
-                به‌جای خرید پراکنده،
-                <span>یک انتخاب هماهنگ</span>
+                تجربه‌ای که با شناخت عروس شکل گرفته؛
+                <span>و هنوز شخصی باقی مانده است</span>
             </h2>
 
             <p class="mds-home-why__lead">
-                تمام جزئیات استایل عروس را کنار هم ببینید، مقایسه کنید و مطمئن‌تر انتخاب کنید.
+                گالری مظهری نسل‌هاست که انتخاب عروس را نه یک خرید ساده، بلکه ساختن تصویری کامل برای یک روز ماندگار می‌داند.
             </p>
 
-            <div class="mds-home-why__comparison" aria-label="تفاوت انتخاب در گالری مظهری">
-                <p>
-                    <span>چند فروشگاه</span>
-                    <span class="mds-home-why__comparison-arrow" aria-hidden="true">←</span>
-                    <strong>یک مقصد کامل</strong>
-                </p>
-                <p>
-                    <span>انتخاب‌های جدا</span>
-                    <span class="mds-home-why__comparison-arrow" aria-hidden="true">←</span>
-                    <strong>استایل هماهنگ</strong>
-                </p>
-                <p>
-                    <span>تصمیم‌گیری سخت</span>
-                    <span class="mds-home-why__comparison-arrow" aria-hidden="true">←</span>
-                    <strong>مشاوره تخصصی</strong>
-                </p>
-            </div>
-
-            <a class="mds-btn mds-btn--primary" href="#appointment">
-                دریافت مشاوره انتخاب
-                <span aria-hidden="true">←</span>
-            </a>
+            <ul class="mds-home-why__proofs" aria-label="اعتماد به گالری مظهری">
+                <li><strong>مشاوره تخصصی</strong><span>برای انتخابی متناسب با شما و مراسمتان</span></li>
+                <li><strong>مجموعه کامل</strong><span>از قطعه اصلی تا آخرین جزئیات استایل</span></li>
+                <li><strong>دو شعبه حضوری</strong><span>برای دیدن، مقایسه‌کردن و انتخاب مطمئن‌تر</span></li>
+            </ul>
         </div>
 
         <div class="mds-home-why__visual">
@@ -72,8 +55,8 @@ $why_image    = get_stylesheet_directory_uri() . '/assets/images/home-complete-s
             </div>
 
             <p class="mds-home-why__image-caption">
-                <span lang="en">9 Collections · One Destination</span>
-                <strong>از تور تا آخرین اکسسوری</strong>
+                <span lang="en">Since 1337 · Gallery Mazhari</span>
+                <strong>انتخاب حرفه‌ای، تجربه‌ای شخصی</strong>
             </p>
         </div>
     </div>

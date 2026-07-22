@@ -58,7 +58,7 @@ $status_messages      = array(
             </h2>
 
             <p class="mds-home-appointment__description">
-                چند جزئیات کوتاه برای ما بفرستید تا مشاوره بر اساس مراسم، سلیقه و محصولاتی که نیاز دارید آغاز شود.
+                چند جزئیات کوتاه بفرستید تا گفت‌وگو بر اساس مراسم، سلیقه و نیاز شما آغاز شود.
             </p>
 
             <ol class="mds-home-appointment__steps">
@@ -69,7 +69,7 @@ $status_messages      = array(
 
             <p class="mds-home-appointment__note">
                 <span aria-hidden="true">✦</span>
-                ثبت فرم به‌معنای نهایی‌شدن رزرو نیست؛ زمان مشاوره پس از تماس هماهنگ می‌شود.
+                پس از ثبت، فقط برای هماهنگی زمان مناسب مشاوره با شما تماس می‌گیریم.
             </p>
         </aside>
 
@@ -145,11 +145,13 @@ $status_messages      = array(
                     </label>
 
                     <label class="mds-form-field">
-                        <span>زمان مناسب تماس <b aria-hidden="true">*</b></span>
+                        <span>زمان پیشنهادی تماس <b aria-hidden="true">*</b></span>
                         <select name="contact_time" required>
-                            <option value="">انتخاب کنید</option>
                             <?php foreach ( $time_options as $option_value => $option_label ) : ?>
-                                <option value="<?php echo esc_attr( $option_value ); ?>">
+                                <option
+                                    value="<?php echo esc_attr( $option_value ); ?>"
+                                    <?php selected( 'anytime', $option_value ); ?>
+                                >
                                     <?php echo esc_html( $option_label ); ?>
                                 </option>
                             <?php endforeach; ?>
@@ -171,6 +173,10 @@ $status_messages      = array(
                     <input type="checkbox" name="consent" value="1" required>
                     <span>با تماس گالری مظهری برای هماهنگی این درخواست موافقم.</span>
                 </label>
+
+                <p class="mds-consultation-form__assurance">
+                    رایگان <span aria-hidden="true">·</span> بدون تعهد <span aria-hidden="true">·</span> کمتر از دو دقیقه
+                </p>
 
                 <button class="mds-btn mds-btn--primary" type="submit">
                     ثبت درخواست مشاوره

@@ -11,8 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $special_title_id     = wp_unique_id( 'mds-home-special-title-' );
 $special_category_url = mazhari_get_product_category_url( 'special-bridal-accessories' );
-$special_fallback     = get_stylesheet_directory_uri()
-    . '/assets/images/special-bridal-accessories.webp';
 $special_products     = array();
 
 if ( function_exists( 'wc_get_product' ) && taxonomy_exists( 'product_cat' ) ) {
@@ -52,6 +50,10 @@ if ( function_exists( 'wc_get_product' ) && taxonomy_exists( 'product_cat' ) ) {
         }
     }
 }
+
+if ( ! $special_products ) {
+    return;
+}
 ?>
 
 <section
@@ -73,81 +75,57 @@ if ( function_exists( 'wc_get_product' ) && taxonomy_exists( 'product_cat' ) ) {
         </header>
 
         <div
-            class="mds-home-special__track <?php echo $special_products ? 'has-products' : 'is-preview'; ?>"
+            class="mds-home-special__track has-products"
             aria-label="اکسسوری‌های خاص عروس"
         >
-            <?php if ( $special_products ) : ?>
-                <?php foreach ( $special_products as $special_product ) : ?>
-                    <?php
-                    $special_product_name = $special_product->get_name();
-                    $special_product_url  = $special_product->get_permalink();
-                    $special_image_id     = $special_product->get_image_id();
-                    ?>
-                    <a
-                        class="mds-special-card mds-special-card--product"
-                        href="<?php echo esc_url( $special_product_url ); ?>"
-                        aria-label="<?php echo esc_attr( 'مشاهده ' . $special_product_name ); ?>"
-                    >
-                        <?php if ( $special_image_id ) : ?>
-                            <?php
-                            echo wp_get_attachment_image(
-                                $special_image_id,
-                                'woocommerce_thumbnail',
-                                false,
-                                array(
-                                    'class'    => 'mds-special-card__image',
-                                    'alt'      => $special_product_name,
-                                    'loading'  => 'lazy',
-                                    'decoding' => 'async',
-                                )
-                            );
-                            ?>
-                        <?php else : ?>
-                            <img
-                                class="mds-special-card__image"
-                                src="<?php echo esc_url( wc_placeholder_img_src( 'woocommerce_thumbnail' ) ); ?>"
-                                alt=""
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        <?php endif; ?>
-
-                        <span class="mds-special-card__shade" aria-hidden="true"></span>
-
-                        <div class="mds-special-card__content">
-                            <span>اکسسوری خاص</span>
-                            <h3><?php echo esc_html( $special_product_name ); ?></h3>
-                            <?php if ( $special_product->get_price_html() ) : ?>
-                                <p class="mds-special-card__price">
-                                    <?php echo wp_kses_post( $special_product->get_price_html() ); ?>
-                                </p>
-                            <?php endif; ?>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-            <?php else : ?>
+            <?php foreach ( $special_products as $special_product ) : ?>
+                <?php
+                $special_product_name = $special_product->get_name();
+                $special_product_url  = $special_product->get_permalink();
+                $special_image_id     = $special_product->get_image_id();
+                ?>
                 <a
-                    class="mds-special-card mds-special-card--preview"
-                    href="<?php echo esc_url( $special_category_url ); ?>"
-                    aria-label="مشاهده بادبزن و اکسسوری‌های خاص عروس"
+                    class="mds-special-card mds-special-card--product"
+                    href="<?php echo esc_url( $special_product_url ); ?>"
+                    aria-label="<?php echo esc_attr( 'مشاهده ' . $special_product_name ); ?>"
                 >
-                    <img
-                        class="mds-special-card__image"
-                        src="<?php echo esc_url( $special_fallback ); ?>"
-                        alt="بادبزن سفید عروس"
-                        width="720"
-                        height="958"
-                        loading="lazy"
-                        decoding="async"
-                    >
+                    <?php if ( $special_image_id ) : ?>
+                        <?php
+                        echo wp_get_attachment_image(
+                            $special_image_id,
+                            'woocommerce_thumbnail',
+                            false,
+                            array(
+                                'class'    => 'mds-special-card__image',
+                                'alt'      => $special_product_name,
+                                'loading'  => 'lazy',
+                                'decoding' => 'async',
+                            )
+                        );
+                        ?>
+                    <?php else : ?>
+                        <img
+                            class="mds-special-card__image"
+                            src="<?php echo esc_url( wc_placeholder_img_src( 'woocommerce_thumbnail' ) ); ?>"
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    <?php endif; ?>
+
                     <span class="mds-special-card__shade" aria-hidden="true"></span>
+
                     <div class="mds-special-card__content">
-                        <span>پیشنهاد گالری</span>
-                        <h3>بادبزن و اکسسوری‌های خاص</h3>
-                        <p>محصولات این مجموعه به‌زودی اضافه می‌شوند.</p>
+                        <span>اکسسوری خاص</span>
+                        <h3><?php echo esc_html( $special_product_name ); ?></h3>
+                        <?php if ( $special_product->get_price_html() ) : ?>
+                            <p class="mds-special-card__price">
+                                <?php echo wp_kses_post( $special_product->get_price_html() ); ?>
+                            </p>
+                        <?php endif; ?>
                     </div>
                 </a>
-            <?php endif; ?>
+            <?php endforeach; ?>
 
             <a
                 class="mds-special-card mds-special-card--more"

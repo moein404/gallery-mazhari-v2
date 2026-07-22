@@ -10,6 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 $clothing_spotlight_title_id = wp_unique_id( 'mds-clothing-spotlight-title-' );
 $clothing_collection_url     = mazhari_get_product_category_url( 'bridal-clothing' );
 $clothing_images_uri         = get_stylesheet_directory_uri() . '/assets/images/';
+$clothing_collections        = array(
+    'european-bridal-dresses' => 'اروپایی',
+    'arabic-bridal-dresses'   => 'عربی',
+    'mermaid-bridal-dresses'  => 'ماهی',
+    'ceremony-suits'          => 'کت‌وشلوار عقد',
+);
 ?>
 
 <article
@@ -30,14 +36,17 @@ $clothing_images_uri         = get_stylesheet_directory_uri() . '/assets/images/
         </h2>
 
         <p class="mds-clothing-spotlight__lead">
-            کالکشن‌های لباس عروس و کت‌وشلوار عقد را ببینید و با مشاوره تخصصی رایگان، انتخاب مناسب فرم بدن و سبک مراسمتان را پیدا کنید.
+            کالکشن‌های لباس عروس و کت‌وشلوار عقد را بر اساس فرم، سبک و حال‌وهوای مراسم ببینید.
         </p>
 
         <ul class="mds-clothing-spotlight__collections" aria-label="کالکشن‌های پوشاک عروس">
-            <li>اروپایی</li>
-            <li>عربی</li>
-            <li>ماهی</li>
-            <li>کت‌وشلوار عقد</li>
+            <?php foreach ( $clothing_collections as $collection_slug => $collection_name ) : ?>
+                <li>
+                    <a href="<?php echo esc_url( mazhari_get_product_category_url( $collection_slug ) ); ?>">
+                        <?php echo esc_html( $collection_name ); ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
         </ul>
 
         <div class="mds-clothing-spotlight__actions">
@@ -47,9 +56,6 @@ $clothing_images_uri         = get_stylesheet_directory_uri() . '/assets/images/
             >
                 مشاهده کالکشن‌ها
                 <span aria-hidden="true">←</span>
-            </a>
-            <a class="mds-clothing-spotlight__consultation" href="#appointment">
-                مشاوره تخصصی رایگان
             </a>
         </div>
     </div>

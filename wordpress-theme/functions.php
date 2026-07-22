@@ -40,6 +40,8 @@ add_action( 'wp_enqueue_scripts', 'mazhari_enqueue_assets', 20 );
  * Theme navigation locations.
  */
 function mazhari_register_navigation() {
+    add_theme_support( 'post-thumbnails' );
+
     register_nav_menus(
         array(
             'primary' => __( 'Primary Menu', 'mazhari' ),
@@ -47,6 +49,218 @@ function mazhari_register_navigation() {
     );
 }
 add_action( 'after_setup_theme', 'mazhari_register_navigation' );
+
+/**
+ * Editorial bridal looks curated by Gallery Mazhari specialists.
+ */
+function mazhari_register_curated_look_post_type() {
+    register_post_type(
+        'mazhari_look',
+        array(
+            'labels' => array(
+                'name'               => 'Curated Looks',
+                'singular_name'      => 'Curated Look',
+                'menu_name'          => 'Curated Looks',
+                'add_new'            => 'Add Look',
+                'add_new_item'       => 'Add Curated Look',
+                'edit_item'          => 'Edit Curated Look',
+                'new_item'           => 'New Curated Look',
+                'view_item'          => 'View Curated Look',
+                'search_items'       => 'Search Curated Looks',
+                'not_found'          => 'No curated looks found.',
+                'not_found_in_trash' => 'No curated looks found in Trash.',
+            ),
+            'public'             => true,
+            'show_in_rest'       => true,
+            'menu_icon'          => 'dashicons-art',
+            'menu_position'      => 26,
+            'has_archive'        => 'curated-looks',
+            'rewrite'            => array(
+                'slug'       => 'curated-looks',
+                'with_front' => false,
+            ),
+            'supports'           => array(
+                'title',
+                'editor',
+                'excerpt',
+                'thumbnail',
+                'page-attributes',
+            ),
+            'show_in_nav_menus'  => true,
+            'exclude_from_search' => false,
+        )
+    );
+}
+add_action( 'init', 'mazhari_register_curated_look_post_type', 20 );
+
+/**
+ * Flush curated-look routes once after this feature is deployed.
+ */
+function mazhari_maybe_flush_curated_look_rewrites() {
+    $rewrite_version = '1';
+
+    if ( $rewrite_version === get_option( 'mazhari_curated_look_rewrite_version' ) ) {
+        return;
+    }
+
+    flush_rewrite_rules( false );
+    update_option( 'mazhari_curated_look_rewrite_version', $rewrite_version, false );
+}
+add_action( 'init', 'mazhari_maybe_flush_curated_look_rewrites', 40 );
+
+/**
+ * Curated-look editorial fields.
+ */
+function mazhari_get_curated_look_meta_fields() {
+    return array(
+        '_mazhari_look_style' => array(
+            'label'       => 'Style',
+            'placeholder' => 'Example: Modern Classic',
+        ),
+        '_mazhari_look_mood' => array(
+            'label'       => 'Mood',
+            'placeholder' => 'Example: Soft, luminous, timeless',
+        ),
+        '_mazhari_look_ceremony' => array(
+            'label'       => 'Recommended ceremony',
+            'placeholder' => 'Example: Wedding reception',
+        ),
+        '_mazhari_look_suitable_for' => array(
+            'label'       => 'Suitable for',
+            'placeholder' => 'Describe the bride, venue, season or styling preference.',
+        ),
+        '_mazhari_look_product_ids' => array(
+            'label'       => 'WooCommerce product IDs',
+            'placeholder' => 'Example: 128, 305, 411',
+        ),
+    );
+}
+
+function mazhari_register_curated_look_meta() {
+    foreach ( mazhari_get_curated_look_meta_fields() as $meta_key => $field ) {
+        register_post_meta(
+            'mazhari_look',
+            $meta_key,
+            array(
+                'type'              => 'string',
+                'single'            => true,
+                'sanitize_callback' => 'sanitize_text_field',
+                'show_in_rest'      => true,
+                'auth_callback'     => function() {
+                    return current_user_can( 'edit_posts' );
+                },
+            )
+        );
+    }
+
+    register_post_meta(
+        'mazhari_look',
+        '_mazhari_selection_featured',
+        array(
+            'type'              => 'boolean',
+            'single'            => true,
+            'sanitize_callback' => 'rest_sanitize_boolean',
+            'show_in_rest'      => true,
+            'auth_callback'     => function() {
+                return current_user_can( 'edit_posts' );
+            },
+        )
+    );
+}
+add_action( 'init', 'mazhari_register_curated_look_meta', 21 );
+
+function mazhari_add_curated_look_meta_box() {
+    add_meta_box(
+        'mazhari-curated-look-details',
+        'Look Details',
+        'mazhari_render_curated_look_meta_box',
+        'mazhari_look',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes_mazhari_look', 'mazhari_add_curated_look_meta_box' );
+
+function mazhari_render_curated_look_meta_box( $post ) {
+    wp_nonce_field( 'mazhari_save_curated_look', 'mazhari_curated_look_nonce' );
+
+    foreach ( mazhari_get_curated_look_meta_fields() as $meta_key => $field ) {
+        $field_value = get_post_meta( $post->ID, $meta_key, true );
+        ?>
+        <p>
+            <label for="<?php echo esc_attr( $meta_key ); ?>">
+                <strong><?php echo esc_html( $field['label'] ); ?></strong>
+            </label>
+        </p>
+        <p>
+            <input
+                class="widefat"
+                id="<?php echo esc_attr( $meta_key ); ?>"
+                name="<?php echo esc_attr( $meta_key ); ?>"
+                type="text"
+                value="<?php echo esc_attr( $field_value ); ?>"
+                placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>"
+            >
+        </p>
+        <?php
+    }
+
+    $is_featured = (bool) get_post_meta(
+        $post->ID,
+        '_mazhari_selection_featured',
+        true
+    );
+    ?>
+    <p>
+        <label>
+            <input
+                type="checkbox"
+                name="_mazhari_selection_featured"
+                value="1"
+                <?php checked( $is_featured ); ?>
+            >
+            Feature this look in The Mazhari Selection on the homepage
+        </label>
+    </p>
+    <p class="description">
+        Add a featured image and a short excerpt. Only published, featured looks with an image appear on the homepage.
+    </p>
+    <?php
+}
+
+function mazhari_save_curated_look_meta( $post_id ) {
+    $nonce = isset( $_POST['mazhari_curated_look_nonce'] )
+        ? sanitize_text_field( wp_unslash( $_POST['mazhari_curated_look_nonce'] ) )
+        : '';
+
+    if (
+        ! wp_verify_nonce( $nonce, 'mazhari_save_curated_look' )
+        || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+        || ! current_user_can( 'edit_post', $post_id )
+    ) {
+        return;
+    }
+
+    foreach ( mazhari_get_curated_look_meta_fields() as $meta_key => $field ) {
+        $field_value = isset( $_POST[ $meta_key ] )
+            ? sanitize_text_field( wp_unslash( $_POST[ $meta_key ] ) )
+            : '';
+
+        if ( '' === $field_value ) {
+            delete_post_meta( $post_id, $meta_key );
+            continue;
+        }
+
+        update_post_meta( $post_id, $meta_key, $field_value );
+    }
+
+    update_post_meta(
+        $post_id,
+        '_mazhari_selection_featured',
+        isset( $_POST['_mazhari_selection_featured'] ) ? '1' : '0'
+    );
+}
+add_action( 'save_post_mazhari_look', 'mazhari_save_curated_look_meta' );
 
 /**
  * Product categories used across the storefront.
@@ -527,10 +741,10 @@ function mazhari_get_consultation_category_options() {
 
 function mazhari_get_consultation_time_options() {
     return array(
+        'anytime'   => 'هر زمان مناسب بود',
         'morning'   => 'صبح، ۹ تا ۱۲',
         'afternoon' => 'ظهر، ۱۲ تا ۱۶',
         'evening'   => 'عصر، ۱۶ تا ۲۰',
-        'anytime'   => 'هر زمان مناسب بود',
     );
 }
 

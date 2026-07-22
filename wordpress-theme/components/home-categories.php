@@ -130,3 +130,10 @@ $special_accessories_component = get_stylesheet_directory()
 if ( file_exists( $special_accessories_component ) ) {
     include $special_accessories_component;
 }
+
+$selection_component = get_stylesheet_directory()
+    . '/components/home-selection.php';
+
+if ( file_exists( $selection_component ) ) {
+    include $selection_component;
+}

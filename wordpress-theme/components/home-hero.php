@@ -19,7 +19,7 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
         <div class="mds-home-hero__content">
             <p class="mds-home-hero__eyebrow">
                 <span aria-hidden="true"></span>
-                مرجع کامل محصولات عروس
+                از ۱۳۳۷؛ همراه انتخاب عروس
             </p>
 
             <h1 class="mds-home-hero__title" id="<?php echo esc_attr( $hero_title_id ); ?>">
@@ -28,7 +28,7 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
             </h1>
 
             <p class="mds-home-hero__description">
-                از پوشاک و تور سر تا کفش، کیف، اکسسوری مو، زیورآلات و ملزومات عقد؛ مجموعه‌ای کامل برای ساختن هماهنگ‌ترین انتخاب عروس.
+                پوشاک، تور، کفش، کیف و اکسسوری‌های هر استایل را با راهنمایی متخصصان گالری، در یک مقصد کامل انتخاب کنید.
             </p>
 
             <div class="mds-home-hero__actions">
@@ -39,7 +39,7 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
             </div>
 
             <p class="mds-home-hero__signature" lang="en">
-                The Bridal Edit <span aria-hidden="true">·</span> Gallery Mazhari
+                Since 1337 <span aria-hidden="true">·</span> The Bridal Destination
             </p>
         </div>
 
