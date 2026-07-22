@@ -19,7 +19,7 @@ $hero_image    = get_stylesheet_directory_uri() . '/assets/images/home-hero-brid
         <div class="mds-home-hero__content">
             <p class="mds-home-hero__eyebrow">
                 <span aria-hidden="true"></span>
-                از ۱۳۳۷؛ همراه انتخاب عروس
+                از ۱۳۳۷؛ همراه عروس‌های زیبا
             </p>
 
             <h1 class="mds-home-hero__title" id="<?php echo esc_attr( $hero_title_id ); ?>">

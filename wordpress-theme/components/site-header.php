@@ -44,6 +44,40 @@ $fallback_menu = array(
         'url'   => $home_url . '#contact',
     ),
 );
+
+$mobile_menu_links = array(
+    array(
+        'label' => 'خانه',
+        'hint'  => 'شروع از صفحه اصلی',
+        'url'   => $home_url,
+    ),
+    array(
+        'label' => 'دسته‌بندی محصولات',
+        'hint'  => 'تمام نیازهای عروس در یک مجموعه',
+        'url'   => $home_url . '#collections',
+    ),
+    array(
+        'label' => 'کالکشن‌های لباس',
+        'hint'  => 'لباس عروس و کت‌وشلوار عقد',
+        'url'   => function_exists( 'mazhari_get_product_category_url' )
+            ? mazhari_get_product_category_url( 'bridal-clothing' )
+            : $home_url . '#collections',
+    ),
+    array(
+        'label' => 'استایل‌های منتخب',
+        'hint'  => 'ترکیب‌های پیشنهادی گالری مظهری',
+        'url'   => get_post_type_archive_link( 'mazhari_look' ) ?: $home_url . '#selection',
+    ),
+);
+
+$mobile_category_links = array(
+    'bridal-veils'                       => 'تور عروس',
+    'bridal-shoes-bags'                  => 'کفش، کتونی و کیف',
+    'bridal-hair-accessories'            => 'اکسسوری مو',
+    'bridal-jewelry'                     => 'زیورآلات',
+    'special-bridal-accessories'         => 'اکسسوری خاص',
+    'engagement-ceremony-essentials'     => 'ملزومات عقد',
+);
 ?>
 
 <div class="mds-site-header" id="<?php echo esc_attr( $header_id ); ?>" data-mds-header>
@@ -60,29 +94,77 @@ $fallback_menu = array(
         </a>
 
         <nav class="mds-site-header__nav" id="<?php echo esc_attr( $nav_id ); ?>" aria-label="منوی اصلی" data-mds-nav>
-            <?php if ( has_nav_menu( 'primary' ) ) : ?>
-                <?php
-                wp_nav_menu(
-                    array(
-                        'theme_location' => 'primary',
-                        'container'      => false,
-                        'menu_class'     => 'mds-site-header__menu',
-                        'fallback_cb'    => false,
-                        'depth'          => 2,
-                    )
-                );
-                ?>
-            <?php else : ?>
-                <ul class="mds-site-header__menu">
-                    <?php foreach ( $fallback_menu as $item ) : ?>
-                        <li class="menu-item">
+            <div class="mds-site-header__desktop-nav">
+                <?php if ( has_nav_menu( 'primary' ) ) : ?>
+                    <?php
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'primary',
+                            'container'      => false,
+                            'menu_class'     => 'mds-site-header__menu',
+                            'fallback_cb'    => false,
+                            'depth'          => 2,
+                        )
+                    );
+                    ?>
+                <?php else : ?>
+                    <ul class="mds-site-header__menu">
+                        <?php foreach ( $fallback_menu as $item ) : ?>
+                            <li class="menu-item">
+                                <a href="<?php echo esc_url( $item['url'] ); ?>">
+                                    <?php echo esc_html( $item['label'] ); ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+
+            <div class="mds-site-header__mobile-menu" dir="rtl">
+                <header class="mds-site-header__mobile-intro">
+                    <span lang="en">The Bridal Destination</span>
+                    <strong>مسیر انتخاب شما</strong>
+                    <p>از اولین ایده تا آخرین جزئیات، همه‌چیز اینجاست.</p>
+                </header>
+
+                <ul class="mds-site-header__mobile-primary">
+                    <?php foreach ( $mobile_menu_links as $index => $item ) : ?>
+                        <li>
                             <a href="<?php echo esc_url( $item['url'] ); ?>">
-                                <?php echo esc_html( $item['label'] ); ?>
+                                <span class="mds-site-header__mobile-number" aria-hidden="true">
+                                    <?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?>
+                                </span>
+                                <span>
+                                    <strong><?php echo esc_html( $item['label'] ); ?></strong>
+                                    <small><?php echo esc_html( $item['hint'] ); ?></small>
+                                </span>
+                                <span class="mds-site-header__mobile-arrow" aria-hidden="true">←</span>
                             </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
-            <?php endif; ?>
+
+                <section class="mds-site-header__mobile-categories" aria-labelledby="<?php echo esc_attr( $header_id . '-categories-title' ); ?>">
+                    <h2 id="<?php echo esc_attr( $header_id . '-categories-title' ); ?>">دسته‌های محبوب</h2>
+                    <div>
+                        <?php foreach ( $mobile_category_links as $category_slug => $category_label ) : ?>
+                            <a href="<?php echo esc_url( mazhari_get_product_category_url( $category_slug ) ); ?>">
+                                <?php echo esc_html( $category_label ); ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
+
+                <div class="mds-site-header__mobile-footer">
+                    <a class="mds-site-header__mobile-cta" href="<?php echo esc_url( $home_url . '#appointment' ); ?>">
+                        راهنمای انتخاب و مشاوره
+                        <span aria-hidden="true">←</span>
+                    </a>
+                    <a class="mds-site-header__mobile-contact" href="<?php echo esc_url( $home_url . '#contact' ); ?>">
+                        شعبه‌ها و راه‌های ارتباطی
+                    </a>
+                </div>
+            </div>
         </nav>
 
         <div class="mds-site-header__actions">
