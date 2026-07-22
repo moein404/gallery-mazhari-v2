@@ -118,7 +118,6 @@ $categories          = array(
         </div>
 
         <header class="mds-home-categories__clothing-heading">
-            <span lang="en">Bridal &amp; Ceremony Collections</span>
             <strong>کالکشن لباس عروس و کت‌وشلوار عقد</strong>
         </header>
 

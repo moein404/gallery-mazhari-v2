@@ -1345,8 +1345,13 @@
 
 .mds-home-categories__heading {
   margin: 0 0 clamp(24px, 3.5vw, 38px);
-  display: flex;
+  padding: 13px 28px;
+  display: inline-flex;
   align-items: center;
+  background: rgba(255, 253, 249, .72);
+  border: 1px solid rgba(183, 149, 69, .32);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(48, 37, 22, .05);
 }
 
 .mds-home-categories__heading h2 {
@@ -1420,30 +1425,25 @@
 }
 
 .mds-home-categories__clothing-heading {
-  max-width: 780px;
+  width: fit-content;
+  max-width: 100%;
   margin-bottom: clamp(24px, 3.5vw, 38px);
-}
-
-.mds-home-categories__clothing-heading > span {
-  display: block;
-  margin-bottom: 7px;
-  direction: ltr;
-  color: var(--mds-color-primary-hover);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 9px;
-  letter-spacing: .16em;
-  text-align: right;
-  text-transform: uppercase;
+  padding: 12px 24px;
+  background: rgba(255, 253, 249, .72);
+  border: 1px solid rgba(183, 149, 69, .32);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(48, 37, 22, .05);
 }
 
 .mds-home-categories__clothing-heading > strong {
   display: block;
   color: var(--mds-color-heading);
   font-family: var(--mds-font-primary);
-  font-size: clamp(25px, 2.7vw, 36px);
+  font-size: clamp(18px, 2vw, 25px);
   font-weight: var(--mds-font-weight-medium);
-  line-height: 1.65;
+  line-height: 1.55;
   letter-spacing: -.015em;
+  white-space: nowrap;
 }
 
 .mds-home-categories__divider--outro {
@@ -1643,6 +1643,7 @@
 
   .mds-home-categories__heading {
     margin-bottom: 20px;
+    padding: 10px 20px;
   }
 
   .mds-home-categories__heading h2 {
@@ -1656,16 +1657,12 @@
 
   .mds-home-categories__clothing-heading {
     margin-bottom: 20px;
-  }
-
-  .mds-home-categories__clothing-heading > span {
-    font-size: 7px;
+    padding: 9px 15px;
   }
 
   .mds-home-categories__clothing-heading > strong {
-    max-width: 320px;
-    font-size: clamp(20px, 6.2vw, 24px);
-    line-height: 1.7;
+    font-size: clamp(13px, 4vw, 18px);
+    line-height: 1.55;
   }
 
   .mds-home-categories__header {
