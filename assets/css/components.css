@@ -486,10 +486,11 @@
 
   .mds-site-header__nav {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     right: 0;
     left: 0;
-    max-height: calc(100svh - 78px);
+    width: min(calc(100% - 32px), 760px);
+    max-height: min(70svh, 590px);
     display: block;
     padding: 0;
     overflow-x: hidden;
@@ -500,7 +501,8 @@
     pointer-events: none;
     transform: translateY(-10px);
     background: #f7f3eb;
-    border-bottom: 1px solid var(--mds-color-border);
+    border: 1px solid rgba(183, 149, 69, .28);
+    border-radius: 20px;
     box-shadow: 0 22px 50px rgba(23, 20, 15, 0.16);
     transition:
       opacity var(--mds-transition-fast),
@@ -521,11 +523,13 @@
 
   .mds-site-header__mobile-menu {
     display: block;
-    width: min(100%, 760px);
+    width: 100%;
     margin-inline: auto;
+    overflow: hidden;
     background:
       radial-gradient(circle at 8% 80%, rgba(183, 149, 69, .09), transparent 25%),
       #f7f3eb;
+    border-radius: inherit;
   }
 
   .mds-site-header__mobile-intro {
@@ -779,38 +783,97 @@
   }
 
   .mds-site-header__nav {
-    max-height: calc(100svh - 70px);
+    top: calc(100% + 6px);
+    width: calc(100% - 20px);
+    max-height: min(68svh, 520px);
+    border-radius: 17px;
   }
 
   .mds-site-header__mobile-intro {
-    padding: 20px 21px 18px;
+    padding: 15px 19px 13px;
   }
 
   .mds-site-header__mobile-intro > strong {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .mds-site-header__mobile-intro > span {
+    margin-bottom: 3px;
+    font-size: 8px;
+  }
+
+  .mds-site-header__mobile-intro > p {
+    display: none;
   }
 
   .mds-site-header__mobile-primary {
+    padding-top: 5px;
     padding-inline: 19px;
   }
 
   .mds-site-header__mobile-primary a {
-    min-height: 63px;
+    min-height: 53px;
+    grid-template-columns: 24px minmax(0, 1fr) 27px;
+    gap: 8px;
+  }
+
+  .mds-site-header__mobile-primary strong {
+    font-size: 15px;
+  }
+
+  .mds-site-header__mobile-primary small {
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .mds-site-header__mobile-arrow {
+    width: 25px;
+    height: 25px;
   }
 
   .mds-site-header__mobile-categories {
-    padding: 17px 19px 18px;
+    padding: 12px 19px 13px;
+  }
+
+  .mds-site-header__mobile-categories h2 {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  .mds-site-header__mobile-categories > div {
+    padding-bottom: 3px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .mds-site-header__mobile-categories > div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mds-site-header__mobile-categories a {
+    min-height: 30px;
+    padding: 5px 10px;
+    flex: 0 0 auto;
+    font-size: 10px;
   }
 
   .mds-site-header__mobile-footer {
-    padding: 16px 19px 21px;
-    grid-template-columns: 1fr;
-    gap: 11px;
+    padding: 11px 19px 13px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .mds-site-header__mobile-cta {
+    min-height: 38px;
+    padding: 8px 13px;
+    font-size: 10px;
   }
 
   .mds-site-header__mobile-contact {
     width: fit-content;
-    justify-self: center;
+    justify-self: end;
+    font-size: 9px;
   }
 
   .mds-site-header__brand {
@@ -4311,13 +4374,43 @@
 
 .mds-home-appointment {
   position: relative;
-  padding-block: clamp(82px, 9vw, 132px);
+  padding-block: clamp(46px, 6vw, 86px) clamp(74px, 8vw, 112px);
   overflow: hidden;
   scroll-margin-top: 110px;
   color: var(--mds-color-heading);
   background:
     radial-gradient(circle at 12% 12%, rgba(183, 149, 69, .1), transparent 24%),
     #f3eee5;
+}
+
+.mds-home-appointment__divider {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 48px), 1240px);
+  height: 9px;
+  margin-bottom: clamp(30px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+}
+
+.mds-home-appointment__divider::before,
+.mds-home-appointment__divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(183, 149, 69, .34));
+}
+
+.mds-home-appointment__divider::after {
+  background: linear-gradient(90deg, rgba(183, 149, 69, .34), transparent);
+}
+
+.mds-home-appointment__divider span {
+  width: 7px;
+  height: 7px;
+  margin-inline: 12px;
+  border: 1px solid rgba(183, 149, 69, .62);
+  transform: rotate(45deg);
 }
 
 .mds-home-appointment::before,
@@ -4349,7 +4442,12 @@
   width: min(calc(100% - 48px), 1240px);
   display: grid;
   grid-template-columns: minmax(340px, .72fr) minmax(0, 1.08fr);
-  gap: clamp(42px, 7vw, 96px);
+  gap: 0;
+  overflow: hidden;
+  background: rgba(255, 253, 249, .94);
+  border: 1px solid rgba(183, 149, 69, .3);
+  border-radius: 24px 24px 72px 24px;
+  box-shadow: 0 28px 68px rgba(48, 37, 22, .12);
 }
 
 .mds-home-appointment__intro {
@@ -4361,9 +4459,9 @@
   background:
     radial-gradient(circle at 10% 90%, rgba(201, 164, 84, .27), transparent 32%),
     linear-gradient(145deg, #393329, #211e19);
-  border: 1px solid rgba(183, 149, 69, .38);
-  border-radius: 4px 4px 58px 4px;
-  box-shadow: 0 28px 65px rgba(23, 23, 23, .14);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .mds-home-appointment__intro::after {
@@ -4488,9 +4586,9 @@
 .mds-home-appointment__form-card {
   padding: clamp(30px, 4vw, 54px);
   background: rgba(255, 253, 249, .92);
-  border: 1px solid rgba(183, 149, 69, .24);
-  border-radius: 4px 4px 44px 4px;
-  box-shadow: 0 22px 55px rgba(48, 37, 22, .07);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .mds-home-appointment__form-heading {
@@ -4670,7 +4768,6 @@
 @media (max-width: 64rem) {
   .mds-home-appointment__inner {
     grid-template-columns: minmax(300px, .68fr) minmax(0, 1fr);
-    gap: 34px;
   }
 
   .mds-consultation-form__row {
@@ -4694,12 +4791,18 @@
 
 @media (max-width: 40rem) {
   .mds-home-appointment {
-    padding-block: 70px;
+    padding-block: 24px 62px;
     scroll-margin-top: 82px;
+  }
+
+  .mds-home-appointment__divider {
+    width: calc(100% - 48px);
+    margin-bottom: 24px;
   }
 
   .mds-home-appointment__inner {
     width: calc(100% - 32px);
+    border-radius: 20px 20px 52px 20px;
   }
 
   .mds-home-appointment__intro,

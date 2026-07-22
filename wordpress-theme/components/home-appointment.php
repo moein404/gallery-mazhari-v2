@@ -46,6 +46,10 @@ $status_messages      = array(
     dir="rtl"
     aria-labelledby="<?php echo esc_attr( $appointment_title_id ); ?>"
 >
+    <div class="mds-home-appointment__divider mds-container" aria-hidden="true">
+        <span></span>
+    </div>
+
     <div class="mds-home-appointment__inner mds-container">
         <aside class="mds-home-appointment__intro">
             <img

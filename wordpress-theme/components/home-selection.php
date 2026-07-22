@@ -160,13 +160,13 @@ $selection_archive  = get_post_type_archive_link( 'mazhari_look' );
         </div>
 
         <?php if ( $selection_archive ) : ?>
-            <footer class="mds-home-selection__footer">
+            <div class="mds-home-selection__footer">
                 <p>هر ماه، انتخابی تازه از استایل‌های کامل گالری مظهری.</p>
                 <a href="<?php echo esc_url( $selection_archive ); ?>">
                     مشاهده همه استایل‌ها
                     <span aria-hidden="true">←</span>
                 </a>
-            </footer>
+            </div>
         <?php endif; ?>
     </div>
 </section>
