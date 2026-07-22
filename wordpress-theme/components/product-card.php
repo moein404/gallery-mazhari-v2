@@ -19,6 +19,7 @@ $product = wp_parse_args(
         'badge_variant' => 'new',
         'image'         => 'https://placehold.co/600x750',
         'image_alt'     => 'لباس عروس Signature',
+        'price'         => '',
         'url'           => '#',
     )
 );
@@ -86,6 +87,12 @@ $product_image_url = is_scalar( $product['image'] )
             </a>
 
         </h3>
+
+        <?php if ( ! empty( $product['price'] ) ) : ?>
+            <div class="mds-product-card__price">
+                <?php echo wp_kses_post( $product['price'] ); ?>
+            </div>
+        <?php endif; ?>
 
         <a
             href="<?php echo esc_url( $product['url'] ); ?>"
