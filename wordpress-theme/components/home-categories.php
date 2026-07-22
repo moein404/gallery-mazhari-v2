@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$categories_title_id = wp_unique_id( 'mds-home-categories-title-' );
 $category_images_uri = get_stylesheet_directory_uri() . '/assets/images/';
 $categories          = array(
     array(
@@ -73,24 +72,9 @@ $categories          = array(
     class="mds-home-categories"
     id="collections"
     dir="rtl"
-    aria-labelledby="<?php echo esc_attr( $categories_title_id ); ?>"
+    aria-label="دسته‌بندی محصولات عروس"
 >
     <div class="mds-home-categories__inner mds-container">
-        <header class="mds-home-categories__header">
-            <h2 class="mds-home-categories__title" id="<?php echo esc_attr( $categories_title_id ); ?>">
-                دسته‌بندی اصلی
-            </h2>
-        </header>
-
-        <?php
-        $clothing_spotlight_component = get_stylesheet_directory()
-            . '/components/home-clothing-spotlight.php';
-
-        if ( file_exists( $clothing_spotlight_component ) ) {
-            include $clothing_spotlight_component;
-        }
-        ?>
-
         <div class="mds-home-categories__grid">
             <?php foreach ( $categories as $category ) : ?>
                 <a
@@ -117,6 +101,19 @@ $categories          = array(
                 </a>
             <?php endforeach; ?>
         </div>
+
+        <div class="mds-home-categories__divider" aria-hidden="true">
+            <span></span>
+        </div>
+
+        <?php
+        $clothing_spotlight_component = get_stylesheet_directory()
+            . '/components/home-clothing-spotlight.php';
+
+        if ( file_exists( $clothing_spotlight_component ) ) {
+            include $clothing_spotlight_component;
+        }
+        ?>
     </div>
 </section>
 
